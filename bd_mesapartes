@@ -1,0 +1,609 @@
+-- MySQL Administrator dump 1.4
+--
+-- ------------------------------------------------------
+-- Server version	5.5.5-10.4.22-MariaDB
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+
+
+--
+-- Create schema db_hacdp
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ db_hacdp;
+USE db_hacdp;
+
+--
+-- Table structure for table `db_hacdp`.`area`
+--
+
+DROP TABLE IF EXISTS `area`;
+CREATE TABLE `area` (
+  `idarea` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_area` varchar(15) NOT NULL,
+  `area` varchar(200) NOT NULL,
+  PRIMARY KEY (`idarea`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`area`
+--
+
+/*!40000 ALTER TABLE `area` DISABLE KEYS */;
+INSERT INTO `area` (`idarea`,`cod_area`,`area`) VALUES 
+ (1,'0102012','DIRECCIÓN'),
+ (2,'010202','UNIDAD DE SEGUROS'),
+ (3,'010204','LOGÍSTICA'),
+ (5,'010206','TESORERIA'),
+ (6,'010209','OFICINA DE SISTEMAS, INFORMÁTICA Y TELECOMUNICACIONES'),
+ (7,'010210','RECURSOS HUMANOS'),
+ (8,'01020101','SECRETARIA'),
+ (11,'54345','CONTROL DE ASISTENCIA'),
+ (12,'12351454535','CONSULTORIO MEDICO 2'),
+ (16,'000001','ADMIN SISTEMA'),
+ (26,'123456','ESTADISTICA');
+/*!40000 ALTER TABLE `area` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`areainstitu`
+--
+
+DROP TABLE IF EXISTS `areainstitu`;
+CREATE TABLE `areainstitu` (
+  `idareainstitu` int(11) NOT NULL AUTO_INCREMENT,
+  `idinstitucion` int(11) NOT NULL,
+  `idarea` int(11) NOT NULL,
+  PRIMARY KEY (`idareainstitu`),
+  KEY `idinstitucion` (`idinstitucion`),
+  KEY `idarea` (`idarea`),
+  CONSTRAINT `areainstitu_ibfk_1` FOREIGN KEY (`idinstitucion`) REFERENCES `institucion` (`idinstitucion`),
+  CONSTRAINT `areainstitu_ibfk_2` FOREIGN KEY (`idarea`) REFERENCES `area` (`idarea`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`areainstitu`
+--
+
+/*!40000 ALTER TABLE `areainstitu` DISABLE KEYS */;
+INSERT INTO `areainstitu` (`idareainstitu`,`idinstitucion`,`idarea`) VALUES 
+ (1,1,1),
+ (2,1,2),
+ (3,1,3),
+ (5,1,5),
+ (6,1,6),
+ (7,1,7),
+ (8,1,8),
+ (11,1,11),
+ (12,1,12),
+ (16,1,16),
+ (26,1,26);
+/*!40000 ALTER TABLE `areainstitu` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`derivacion`
+--
+
+DROP TABLE IF EXISTS `derivacion`;
+CREATE TABLE `derivacion` (
+  `idderivacion` int(11) NOT NULL AUTO_INCREMENT,
+  `fechad` datetime NOT NULL,
+  `origen` varchar(100) NOT NULL,
+  `idareainstitu` int(11) NOT NULL,
+  `iddocumento` int(11) NOT NULL,
+  `descripcion` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`idderivacion`),
+  KEY `idareainstitu` (`idareainstitu`),
+  KEY `iddocumento` (`iddocumento`),
+  CONSTRAINT `derivacion_ibfk_1` FOREIGN KEY (`idareainstitu`) REFERENCES `areainstitu` (`idareainstitu`),
+  CONSTRAINT `derivacion_ibfk_2` FOREIGN KEY (`iddocumento`) REFERENCES `documento` (`iddocumento`)
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`derivacion`
+--
+
+/*!40000 ALTER TABLE `derivacion` DISABLE KEYS */;
+INSERT INTO `derivacion` (`idderivacion`,`fechad`,`origen`,`idareainstitu`,`iddocumento`,`descripcion`) VALUES 
+ (1,'2022-03-31 10:14:04','EXTERIOR',8,1,NULL),
+ (2,'2022-03-31 10:15:29','EXTERIOR',8,3,NULL),
+ (5,'2022-04-07 12:28:18','EXTERIOR',8,6,''),
+ (6,'2022-04-07 12:33:29','EXTERIOR',8,7,''),
+ (7,'2022-04-07 14:47:43','EXTERIOR',8,8,'ERROR'),
+ (8,'2022-04-07 16:44:43','EXTERIOR',8,9,''),
+ (9,'2022-04-07 16:54:25','EXTERIOR',8,10,'FALTA EL OFICIO'),
+ (10,'2022-04-07 17:00:05','EXTERIOR',8,11,''),
+ (11,'2022-04-07 17:15:56','EXTERIOR',8,12,''),
+ (12,'2022-04-07 18:33:02','EXTERIOR',8,13,''),
+ (13,'2022-04-07 19:01:30','EXTERIOR',8,14,''),
+ (14,'2022-04-11 19:58:31','EXTERIOR',8,15,''),
+ (15,'2022-04-12 07:53:00','EXTERIOR',8,16,''),
+ (16,'2022-04-12 10:55:10','SECRETARIA',1,1,'Revisese el siguiente documento'),
+ (17,'2022-04-13 09:10:14','SECRETARIA',1,16,'REVISE EL SIGUIENTE OFICIO ATTE SECRETARIA'),
+ (18,'2022-04-13 11:49:41','DIRECCIÓN',6,1,'ANALIZAR EL DOCUMENTO'),
+ (21,'2022-04-16 17:41:19','SECRETARIA',6,14,'FBSFGB'),
+ (22,'2022-04-16 17:42:50','SECRETARIA',6,16,'HK,HKIL');
+INSERT INTO `derivacion` (`idderivacion`,`fechad`,`origen`,`idareainstitu`,`iddocumento`,`descripcion`) VALUES 
+ (23,'2022-04-16 17:43:31','SECRETARIA',1,15,''),
+ (25,'2022-04-16 18:59:54','SECRETARIA',16,11,'BK,ULI,IY7'),
+ (26,'2022-04-17 10:03:41','DIRECCIÓN',12,16,''),
+ (27,'2022-04-17 11:46:58','EXTERIOR',8,17,''),
+ (30,'2022-04-17 11:54:35','SECRETARIA',8,17,''),
+ (31,'2022-04-17 11:54:44','SECRETARIA',8,17,''),
+ (32,'2022-04-17 11:57:22','SECRETARIA',8,3,''),
+ (33,'2022-04-17 12:37:25','SECRETARIA',8,6,'HOLAAAA'),
+ (34,'2022-04-18 08:43:23','',8,9,''),
+ (35,'2022-04-18 08:45:16','',8,13,''),
+ (36,'2022-04-18 08:50:10','SECRETARIA',1,8,''),
+ (41,'2022-04-18 11:38:09','EXTERIOR',8,18,'NO ACEPTAR'),
+ (42,'2022-04-18 11:45:56','SECRETARIA',1,12,''),
+ (43,'2022-04-19 09:15:07','EXTERIOR',8,19,''),
+ (45,'2022-04-22 11:32:38','EXTERIOR',8,21,''),
+ (46,'2022-04-22 11:36:19','EXTERIOR',8,22,''),
+ (47,'2022-04-22 12:53:49','SECRETARIA',1,21,'JMTJ,U'),
+ (48,'2022-04-22 12:55:22','DIRECCIÓN',5,21,'YIKYJMYIK'),
+ (49,'2022-04-23 11:49:59','EXTERIOR',8,23,'');
+INSERT INTO `derivacion` (`idderivacion`,`fechad`,`origen`,`idareainstitu`,`iddocumento`,`descripcion`) VALUES 
+ (50,'2022-04-23 11:53:28','EXTERIOR',8,24,''),
+ (51,'2022-04-23 12:02:09','EXTERIOR',8,26,''),
+ (52,'2022-04-23 13:44:57','SECRETARIA',1,23,'HOLA PEERO'),
+ (53,'2022-04-23 13:46:49','SECRETARIA',2,24,'ASHJBASFV'),
+ (54,'2022-04-23 14:33:20','EXTERIOR',8,27,'FALTA FOLIAR'),
+ (55,'2022-04-23 15:54:10','EXTERIOR',8,28,''),
+ (56,'2022-04-23 15:54:28','EXTERIOR',8,29,''),
+ (57,'2022-04-23 15:54:51','SECRETARIA',1,28,'EARGAERGER'),
+ (58,'2022-04-23 15:54:56','SECRETARIA',1,29,'RGERRDG'),
+ (59,'2022-04-23 21:45:46','DIRECCIÓN',8,29,'NO CUMPLE CON LAS CONDICIONES'),
+ (60,'2022-04-23 21:53:22','DIRECCIÓN',8,28,'NO MAMES'),
+ (61,'2022-04-24 10:56:51','EXTERIOR',8,30,''),
+ (62,'2022-04-26 08:47:01','EXTERIOR',8,31,''),
+ (63,'2022-04-26 08:47:52','EXTERIOR',8,32,''),
+ (64,'2022-04-26 08:50:48','EXTERIOR',8,33,''),
+ (65,'2022-04-26 08:52:50','EXTERIOR',8,34,''),
+ (66,'2022-04-26 09:11:15','SECRETARIA',1,31,'REVISAR EL SIGUIENTE DOCUMENTO'),
+ (67,'2022-04-26 09:24:02','DIRECCIÓN',7,31,'REVISAR DICHA INFORMACI´ÓN');
+INSERT INTO `derivacion` (`idderivacion`,`fechad`,`origen`,`idareainstitu`,`iddocumento`,`descripcion`) VALUES 
+ (68,'2022-04-27 12:52:52','EXTERIOR',8,35,''),
+ (69,'2022-04-27 16:06:38','EXTERIOR',8,36,''),
+ (70,'2022-04-27 16:07:37','EXTERIOR',8,37,''),
+ (71,'2022-04-27 16:12:17','EXTERIOR',8,38,''),
+ (72,'2022-04-27 16:17:25','EXTERIOR',8,39,''),
+ (73,'2022-04-27 16:18:42','EXTERIOR',8,40,''),
+ (74,'2022-04-27 16:22:18','EXTERIOR',8,41,''),
+ (75,'2022-04-28 19:00:48','SECRETARIA',1,40,'DERIVADO'),
+ (76,'2022-04-28 19:04:43','DIRECCIÓN',7,40,''),
+ (77,'2022-04-28 19:05:05','RECURSOS HUMANOS',8,40,''),
+ (78,'2022-04-28 22:39:48','EXTERIOR',8,42,''),
+ (79,'2022-04-28 22:42:40','SECRETARIA',1,42,'REVISAR'),
+ (80,'2022-04-28 22:44:14','EXTERIOR',8,43,''),
+ (81,'2022-04-28 22:46:30','EXTERIOR',8,44,''),
+ (82,'2022-05-04 11:53:58','EXTERIOR',8,45,''),
+ (83,'2022-05-21 10:07:19','EXTERIOR',8,46,''),
+ (84,'2022-05-21 10:43:44','SECRETARIA',6,46,'REVICE EL SIGUIENTE OFICIO INGRESADOS');
+/*!40000 ALTER TABLE `derivacion` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`documento`
+--
+
+DROP TABLE IF EXISTS `documento`;
+CREATE TABLE `documento` (
+  `iddocumento` int(11) NOT NULL AUTO_INCREMENT,
+  `nro_expediente` varchar(10) NOT NULL,
+  `nro_doc` varchar(10) NOT NULL,
+  `folios` int(11) NOT NULL,
+  `asunto` varchar(500) NOT NULL,
+  `estado` varchar(50) NOT NULL,
+  `archivo` text NOT NULL,
+  `idpersona` int(11) NOT NULL,
+  `idtipodoc` int(11) NOT NULL,
+  `idubi` int(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`iddocumento`),
+  KEY `idpersona` (`idpersona`),
+  KEY `idtipodoc` (`idtipodoc`),
+  CONSTRAINT `documento_ibfk_1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`),
+  CONSTRAINT `documento_ibfk_2` FOREIGN KEY (`idtipodoc`) REFERENCES `tipodoc` (`idtipodoc`)
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`documento`
+--
+
+/*!40000 ALTER TABLE `documento` DISABLE KEYS */;
+INSERT INTO `documento` (`iddocumento`,`nro_expediente`,`nro_doc`,`folios`,`asunto`,`estado`,`archivo`,`idpersona`,`idtipodoc`,`idubi`) VALUES 
+ (1,'000001','001',4,'SOLICITO REALIZAR PRACTICAS PREPROFESIONALES','ACEPTADO','files/docs/archivo1.pdf',4,4,6),
+ (3,'000002','002',6,'ACTIVIDADES REALIZADAS EN PRACTICAS PREPROFESIONALES','RECHAZADO','files/docs/archivo2.pdf',4,5,8),
+ (6,'000004','001',23,'OFICIO NO MAS','RECHAZADO','files/docs/000004_2022_34523536.pdf',25,1,8),
+ (7,'000007','005',2,'SOLICITUD DE PRACTICA','RECHAZADO','files/docs/000007_2022_12345445.pdf',26,4,8),
+ (8,'000008','002',6,'oficio multiple','RECHAZADO','files/docs/000008_2022_72224693.pdf',3,1,8),
+ (9,'000009','234',23423,'wfaerwf','RECHAZADO','files/docs/000009_2022_72224693.pdf',3,1,8),
+ (10,'000010','234',3,'hola','RECHAZADO','files/docs/000010_2022_23242134.pdf',24,4,8),
+ (11,'000011','234',4,'rthht','ACEPTADO','files/docs/000011_2022_23412541.pdf',27,3,16),
+ (12,'000012','005',5,'informe de control de asistencia','ARCHIVADO','files/docs/000012_2022_32610292.pdf',28,5,1),
+ (13,'000013','001',15,'SOLICITO REALIZAR PRACTICAS PRE PROFESIONALES','RECHAZADO','files/docs/000013_2022_72224693.pdf',3,4,8);
+INSERT INTO `documento` (`iddocumento`,`nro_expediente`,`nro_doc`,`folios`,`asunto`,`estado`,`archivo`,`idpersona`,`idtipodoc`,`idubi`) VALUES 
+ (14,'000014','005',12,'OFICIO DE CONTROL DE ASISTENCIA','ACEPTADO','files/docs/000014_2022_31415875.pdf',30,1,6),
+ (15,'000015','12',32,'HOLA ','ARCHIVADO','files/docs/000015_2022_87878787.pdf',31,3,1),
+ (16,'000016','234',34,'SFGND','ACEPTADO','files/docs/000016_2022_12341243.pdf',32,1,12),
+ (17,'000017','01',5,'MEMORANDUM DE TARDANZA XD','RECHAZADO','files/docs/000017_2022_72224683.pdf',33,3,8),
+ (18,'000018','1',1,'DSFGD','RECHAZADO','files/docs/000018_2022_14141414.pdf',37,2,8),
+ (19,'000019','12',12,'DFVRGBS','RECHAZADO','files/docs/000019_2022_14225241.pdf',38,1,8),
+ (21,'000020','345',4,'34','PENDIENTE','files/docs/000020_2022_2453645.pdf',50,2,5),
+ (22,'000022','3',3,'HOLA','ARCHIVADO','files/docs/000022_2022_34536345.pdf',51,1,8),
+ (23,'000023','34',5,'HOLA PERRO','PENDIENTE','files/docs/000023_2022_34534653.pdf',52,2,1),
+ (24,'000024','458574',4,'GHJK','PENDIENTE','files/docs/000024_2022_23242134.pdf',24,2,2),
+ (25,'000025','324',23,'DFSFGB','PENDIENTE','files/docs/000025_2022_23242134.pdf',24,2,8);
+INSERT INTO `documento` (`iddocumento`,`nro_expediente`,`nro_doc`,`folios`,`asunto`,`estado`,`archivo`,`idpersona`,`idtipodoc`,`idubi`) VALUES 
+ (26,'000026','12',12,'SDVFV','ARCHIVADO','files/docs/000026_2022_23412541.pdf',27,1,8),
+ (27,'000027','23',34,'DSFDGBTHFYJUGH','RECHAZADO','files/docs/000027_2022_23242134.pdf',24,2,8),
+ (28,'000028','3453',0,'DBSG','RECHAZADO','files/docs/000028_2022_23242134.pdf',24,2,1),
+ (29,'000029','3453',0,'ERGREG','RECHAZADO','files/docs/000029_2022_23412541.pdf',27,3,1),
+ (30,'000030','3453',0,'SFVSF','PENDIENTE','files/docs/000030_2022_12341243.pdf',32,1,8),
+ (31,'000031','001',14,'OFICIO DE ASIGNACIóN DE PERSONAL','ARCHIVADO','files/docs/000031_2022_15155451.pdf',53,1,7),
+ (32,'000032','001',3,'MEMORANDUM DE SOLUCION DE PROBLEMA','PENDIENTE','files/docs/000032_2022_12341243.pdf',32,3,8),
+ (33,'000033','0002',5,'SOLICITUD DE PRACTICAS PRE','PENDIENTE','files/docs/000033_2022_54454554.pdf',54,4,8),
+ (34,'000034','34',34,'SOLICITUD DE EXPEDIENTE MEDICO','PENDIENTE','files/docs/000034_2022_12341243.pdf',32,4,8),
+ (35,'000035','134',4,'SDSDFG','PENDIENTE','files/docs/000035_2022_72224693.pdf',3,2,8);
+INSERT INTO `documento` (`iddocumento`,`nro_expediente`,`nro_doc`,`folios`,`asunto`,`estado`,`archivo`,`idpersona`,`idtipodoc`,`idubi`) VALUES 
+ (36,'000036','009',6,'HOLAAA','PENDIENTE','files/docs/000036_2022_72224693.pdf',3,1,8),
+ (37,'000037','01',2,'GVBHJNKML','PENDIENTE','files/docs/000037_2022_72224693.pdf',3,1,8),
+ (38,'000038','01',55,'DFBDFH','PENDIENTE','files/docs/000038_2022_72224693.pdf',3,1,8),
+ (39,'000039','015',0,'SRGDRGTG','PENDIENTE','files/docs/000039_2022_72224693.pdf',3,1,8),
+ (40,'000040','345',3453,'SFNFG','RECHAZADO','files/docs/000040_2022_72224693.pdf',3,1,7),
+ (41,'000041','3453',4,'FDFHJDHJH','PENDIENTE','files/docs/000041_2022_72224693.pdf',3,2,8),
+ (42,'000042','001',5,'HOLA','PENDIENTE','files/docs/000042_2022_72224693.pdf',3,3,1),
+ (43,'000043','3453',25,'FDGHJNKM,','PENDIENTE','files/docs/000043_2022_72224693.pdf',3,1,8),
+ (44,'000044','3453',47,'HOLA','ACEPTADO','files/docs/000044_2022_70754358.pdf',55,2,8),
+ (45,'000045','3453',345,'FGNSGNF','PENDIENTE','files/docs/000045_2022_72224693.pdf',3,3,8),
+ (46,'000046','012',5,'CONTROL SEMANAL DE LAS PRACTICAS PRE PROFESIONALES','ARCHIVADO','files/docs/000046_2022_72224693.pdf',3,1,6);
+/*!40000 ALTER TABLE `documento` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`empleado`
+--
+
+DROP TABLE IF EXISTS `empleado`;
+CREATE TABLE `empleado` (
+  `idempleado` int(11) NOT NULL AUTO_INCREMENT,
+  `cod_empleado` varchar(15) NOT NULL,
+  `idpersona` int(11) NOT NULL,
+  `idareainstitu` int(11) NOT NULL,
+  PRIMARY KEY (`idempleado`),
+  KEY `idpersona` (`idpersona`),
+  KEY `idareainstitu` (`idareainstitu`),
+  CONSTRAINT `empleado_ibfk_1` FOREIGN KEY (`idpersona`) REFERENCES `persona` (`idpersona`),
+  CONSTRAINT `empleado_ibfk_2` FOREIGN KEY (`idareainstitu`) REFERENCES `areainstitu` (`idareainstitu`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`empleado`
+--
+
+/*!40000 ALTER TABLE `empleado` DISABLE KEYS */;
+INSERT INTO `empleado` (`idempleado`,`cod_empleado`,`idpersona`,`idareainstitu`) VALUES 
+ (2,'JLLG001',3,1),
+ (3,'AMAC000',1,16),
+ (4,'JCAV002',8,8),
+ (22,'PILAR234434',46,7),
+ (23,'YJ0001',56,8),
+ (24,'RSMV0004',57,6);
+/*!40000 ALTER TABLE `empleado` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`historial`
+--
+
+DROP TABLE IF EXISTS `historial`;
+CREATE TABLE `historial` (
+  `idhistorial` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` datetime NOT NULL,
+  `expediente` varchar(6) NOT NULL,
+  `dni` varchar(8) NOT NULL,
+  `accion` varchar(100) NOT NULL,
+  `area` varchar(200) NOT NULL,
+  `descrip` varchar(500) DEFAULT NULL,
+  PRIMARY KEY (`idhistorial`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`historial`
+--
+
+/*!40000 ALTER TABLE `historial` DISABLE KEYS */;
+INSERT INTO `historial` (`idhistorial`,`fecha`,`expediente`,`dni`,`accion`,`area`,`descrip`) VALUES 
+ (1,'2022-04-23 12:02:08','000026','23412541','DERIVADO','SECRETARÍA',NULL),
+ (2,'2022-04-23 13:30:06','000023','34534653','ACEPTADO','SECRETARIA','HOLAA'),
+ (4,'2022-04-23 13:33:04','000024','23242134','ACEPTADO','SECRETARIA',''),
+ (5,'2022-04-23 13:34:24','000026','23412541','ACEPTADO','SECRETARIA',''),
+ (6,'2022-04-23 13:44:57','DERIVA','DIRECCIÓ','','34534653','HOLA PEERO'),
+ (7,'2022-04-23 13:46:50','','23242134','DERIVADO','UNIDAD DE SEGUROS','ASHJBASFV'),
+ (8,'2022-04-23 14:25:51','000026','23412541','ARCHIVADO','SECRETARIA','ACEPTADO LAS CONDICIONES'),
+ (9,'2022-04-23 14:33:20','000027','23242134','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (10,'2022-04-23 14:34:56','','','RECHAZADO','SECRETARíA','FALTA FOLIAR'),
+ (11,'2022-04-23 15:54:10','000028','23242134','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (12,'2022-04-23 15:54:28','000029','23412541','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (13,'2022-04-23 15:54:37','000028','23242134','ACEPTADO','SECRETARIA','');
+INSERT INTO `historial` (`idhistorial`,`fecha`,`expediente`,`dni`,`accion`,`area`,`descrip`) VALUES 
+ (14,'2022-04-23 15:54:41','000029','23412541','ACEPTADO','SECRETARIA',''),
+ (15,'2022-04-23 15:54:51','000028','23242134','DERIVADO','DIRECCIÓN','EARGAERGER'),
+ (16,'2022-04-23 15:54:57','000029','23412541','DERIVADO','DIRECCIÓN','RGERRDG'),
+ (17,'2022-04-23 21:45:46','','','RECHAZADO','DIRECCIÓN','NO CUMPLE CON LAS CONDICIONES'),
+ (18,'2022-04-23 21:45:46','','','DERIVADO','SECRETARÍA','NO CUMPLE CON LAS CONDICIONES'),
+ (19,'2022-04-23 21:53:22','000028','23242134','RECHAZADO','DIRECCIÓN','NO MAMES'),
+ (20,'2022-04-23 21:53:22','000028','23242134','DERIVADO','SECRETARÍA','NO MAMES'),
+ (21,'2022-04-24 10:56:50','000030','12341243','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (22,'2022-04-26 08:47:01','000031','15155451','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (23,'2022-04-26 08:47:52','000032','12341243','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (24,'2022-04-26 08:50:48','000033','54454554','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE');
+INSERT INTO `historial` (`idhistorial`,`fecha`,`expediente`,`dni`,`accion`,`area`,`descrip`) VALUES 
+ (25,'2022-04-26 08:52:50','000034','12341243','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (26,'2022-04-26 09:10:27','000031','15155451','ACEPTADO','SECRETARIA','CORRECTO'),
+ (27,'2022-04-26 09:11:16','000031','15155451','DERIVADO','DIRECCIÓN','REVISAR EL SIGUIENTE DOCUMENTO'),
+ (28,'2022-04-26 09:12:01','000031','15155451','ACEPTADO','DIRECCIÓN','CORRECTO'),
+ (29,'2022-04-26 09:24:02','000031','15155451','DERIVADO','RECURSOS HUMANOS','REVISAR DICHA INFORMACI´ÓN'),
+ (30,'2022-04-26 09:26:05','000031','15155451','ACEPTADO','RECURSOS HUMANOS','ACEPTADO'),
+ (31,'2022-04-26 09:26:26','000031','15155451','ARCHIVADO','RECURSOS HUMANOS','CONFORME, DOCUMENTO ARCHIVADO'),
+ (32,'2022-04-27 12:52:52','000035','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (33,'2022-04-27 16:06:37','000036','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (34,'2022-04-27 16:07:37','000037','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (35,'2022-04-27 16:12:17','000038','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE');
+INSERT INTO `historial` (`idhistorial`,`fecha`,`expediente`,`dni`,`accion`,`area`,`descrip`) VALUES 
+ (36,'2022-04-27 16:17:25','000039','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (37,'2022-04-27 16:18:42','000040','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (38,'2022-04-27 16:22:18','000041','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (39,'2022-04-28 18:52:55','000011','23412541','ACEPTADO','ADMINISTRADOR',''),
+ (40,'2022-04-28 19:00:37','000040','72224693','ACEPTADO','SECRETARIA',''),
+ (41,'2022-04-28 19:00:48','000040','72224693','DERIVADO','DIRECCIÓN','DERIVADO'),
+ (42,'2022-04-28 19:01:54','000040','72224693','ACEPTADO','DIRECCIÓN',''),
+ (43,'2022-04-28 19:04:43','000040','72224693','DERIVADO','RECURSOS HUMANOS',''),
+ (44,'2022-04-28 19:05:05','000040','72224693','RECHAZADO','RECURSOS HUMANOS',''),
+ (45,'2022-04-28 19:05:05','000040','72224693','DERIVADO','SECRETARÍA',''),
+ (46,'2022-04-28 22:39:48','000042','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (47,'2022-04-28 22:42:29','000042','72224693','ACEPTADO','SECRETARIA','');
+INSERT INTO `historial` (`idhistorial`,`fecha`,`expediente`,`dni`,`accion`,`area`,`descrip`) VALUES 
+ (48,'2022-04-28 22:42:40','000042','72224693','DERIVADO','DIRECCIÓN','REVISAR'),
+ (49,'2022-04-28 22:44:13','000043','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (50,'2022-04-28 22:46:29','000044','70754358','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (51,'2022-05-04 11:53:58','000045','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (52,'2022-05-21 10:07:19','000046','72224693','DERIVADO','SECRETARÍA','INGRESO DE NUEVO TRÁMITE'),
+ (53,'2022-05-21 10:39:15','000046','72224693','ACEPTADO','SECRETARIA',''),
+ (54,'2022-05-21 10:42:28','000044','70754358','ACEPTADO','SECRETARIA',''),
+ (55,'2022-05-21 10:43:44','000046','72224693','DERIVADO','OFICINA DE SISTEMAS, INFORMÁTICA Y TELECOMUNICACIONES','REVICE EL SIGUIENTE OFICIO INGRESADOS'),
+ (56,'2022-05-21 10:50:31','000001','74185296','ACEPTADO','OFICINA DE SISTEMAS, INFORMÁTICA Y TELECOMUNICACIONES',''),
+ (57,'2022-05-21 10:50:34','000014','31415875','ACEPTADO','OFICINA DE SISTEMAS, INFORMÁTICA Y TELECOMUNICACIONES','');
+INSERT INTO `historial` (`idhistorial`,`fecha`,`expediente`,`dni`,`accion`,`area`,`descrip`) VALUES 
+ (58,'2022-05-21 10:50:37','000046','72224693','ACEPTADO','OFICINA DE SISTEMAS, INFORMÁTICA Y TELECOMUNICACIONES',''),
+ (59,'2022-05-21 10:51:52','000046','72224693','ARCHIVADO','OFICINA DE SISTEMAS, INFORMÁTICA Y TELECOMUNICACIONES','SE ACEPTA EL DOCUMENTO DANDO EL V°B°');
+/*!40000 ALTER TABLE `historial` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`institucion`
+--
+
+DROP TABLE IF EXISTS `institucion`;
+CREATE TABLE `institucion` (
+  `idinstitucion` int(11) NOT NULL AUTO_INCREMENT,
+  `ruc` varchar(15) NOT NULL,
+  `razon` varchar(200) NOT NULL,
+  `dirección` varchar(200) NOT NULL,
+  `logo` text NOT NULL,
+  PRIMARY KEY (`idinstitucion`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`institucion`
+--
+
+/*!40000 ALTER TABLE `institucion` DISABLE KEYS */;
+INSERT INTO `institucion` (`idinstitucion`,`ruc`,`razon`,`dirección`,`logo`) VALUES 
+ (1,'200214583453','HOSPITAL ANTONIO CALDAS DOMÍNGUEZ - POMABAMBA','AV. SEñOR DE LOS MILAGROS 043 - BARRIO DE HUAJTACHACRA - ANCASH','files/images/inst/logo.png');
+/*!40000 ALTER TABLE `institucion` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`persona`
+--
+
+DROP TABLE IF EXISTS `persona`;
+CREATE TABLE `persona` (
+  `idpersona` int(11) NOT NULL AUTO_INCREMENT,
+  `dni` varchar(8) NOT NULL,
+  `ap_paterno` varchar(100) NOT NULL,
+  `ap_materno` varchar(100) NOT NULL,
+  `nombres` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
+  `direccion` varchar(100) NOT NULL,
+  `ruc_institu` varchar(15) DEFAULT NULL,
+  `institucion` varchar(200) DEFAULT NULL,
+  PRIMARY KEY (`idpersona`)
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`persona`
+--
+
+/*!40000 ALTER TABLE `persona` DISABLE KEYS */;
+INSERT INTO `persona` (`idpersona`,`dni`,`ap_paterno`,`ap_materno`,`nombres`,`email`,`telefono`,`direccion`,`ruc_institu`,`institucion`) VALUES 
+ (1,'78945612','MARTINEZ','CALDAS','ALDO SAUL','adminhacdp@gmail.com','987654321','JR. HUARAZ 520 -  BARRIO DE CONVENTO',NULL,NULL),
+ (3,'72224693','Llallihuaman','Giraldo','Joel Bladimir','joelllalligiraldo@gmail.com','910959104','JR. SAN FRANCISCO S/N - PARCO',NULL,NULL),
+ (4,'74185296','AYALA','VILLAVICENCIO','GUSTAVO DAVID','Maria99@gmail.com','986714525','Jr. Peru 857',NULL,NULL),
+ (8,'78547854','Vargas','Caldas','Jimena','jimenm87@gmail.com','985748574','Jr Peru',NULL,NULL),
+ (24,'23242134','CORZO','ASCENCIO','VICTOR MANUEL','asfdfsa','34523425343','asdfasfasdf','',''),
+ (25,'34523536','LOPEZ','AZAÑA','MARCIAL','@GMAIL.COM','1234567889','JR LAS MERCEDES','',''),
+ (26,'12345445','JARAMILLO','JARAMILLO','EDSON','EDSON@GMAIL.COM','1234567890','JR LAS MERCEDES','',''),
+ (27,'23412541','BERNALDO','FERNANDEZ','HERMELINDA CARMEN','asfdfsa','1234153534','435454','',''),
+ (28,'32610292','GIRALDO','CORZO','TERESA','techi@gmail.com','969676430','jr san francisco','','');
+INSERT INTO `persona` (`idpersona`,`dni`,`ap_paterno`,`ap_materno`,`nombres`,`email`,`telefono`,`direccion`,`ruc_institu`,`institucion`) VALUES 
+ (30,'31415875','GIRALDO','CORzO','ELIZABETH','ELI@GMAIL.COM','987654321','JR. HUAMACHUCO','',''),
+ (31,'87878787','ROJO','JARAMILLO','ALEXANDRA','alexandra12@hotmail.com','12344545456456','JR LIMA','12345455656','MUNI POMABAMBA'),
+ (32,'12341243','ADSG','24234','SDGFS','Saul@gmail.com','985555585','JR. PERU S/N - BARRIO DE CAñARI','',''),
+ (33,'72224683','LLALLIHUAMAN','GIRALDO','PILAR KATHERINE','pilar@pendje.com','987685968','JR HUAMACHUCHO','',''),
+ (34,'12122334','FLORES','VARGAS','SAUL','WETTWHYT','123434567','JR HUAMACHUCO','12345678912','POLICIA NACIONAL'),
+ (35,'23444634','EAGTG','ZTGTG','4351431','GNSHFHNGFHFH','564663464356','5464','',''),
+ (36,'45624525','ZDFHGD','DGZHDGH','FGFSHFG','FGHFGH','45265','GHSSG','',''),
+ (37,'14141414','QWERTY','QWERTY','QWERT','asdfasd','1234123423','WEER','',''),
+ (38,'14225241','FLORES','FLORES','SAUL','asdfasdf','245235235235','AGDFGAFS','',''),
+ (46,'78547835','MARTINEZ','CARRASCO','PILAR KAT','pila2934@gmail.com','987676754','JR PERU',NULL,NULL);
+INSERT INTO `persona` (`idpersona`,`dni`,`ap_paterno`,`ap_materno`,`nombres`,`email`,`telefono`,`direccion`,`ruc_institu`,`institucion`) VALUES 
+ (47,'12115441','PADILLA','CALDERON','MANUEL ERIBER','Manuel@gmail.com','9685869685','JR. HUARAZ 755',NULL,NULL),
+ (48,'78547343','VARGAS','ACERO','TERESA','cris456@outlook.com','969676430','JR PRIMAVERA',NULL,NULL),
+ (49,'2456256','ADSG','ADFGADG','45DFGADS','asdfsadfasdf','245235235235','ASDFASFASDF','',''),
+ (50,'2453645','ID=\"IDFILE\"','ID=\"IDFILE\"','ID=\"IDFILE\"','id=\"idfile\"','34536','ID=\"IDFILE\"','',''),
+ (51,'34536345','SALYROSAS','MARTINEZ','YENNY ROSA','HOLA','2342234534543','HOLA','',''),
+ (52,'34534653','VARGAS','ASCENCIA','YERALDINE','hola pense','4343453453534','JSFRFGREFWR','',''),
+ (53,'15155451','CALDAS','GUTIERREZ','MARYORI','maritza@gmail.com','985858447','JR. LAS AMERICAS S/N','',''),
+ (54,'54454554','MONTERO','CARDONA','SAUL','saul@mendoza.unasam.edu.pe','234252453','BARRIO DE PARCO','',''),
+ (55,'70754358','MATIAS','ROJAS','ZAIDY','starzaidy21@gmail.com','987654321','SHILLA','',''),
+ (56,'74584126','JAQUE','VILLANUEVA','YUBITZA REYNA','jubi@gmail.com','985665525','JR. CAñARI 543',NULL,NULL);
+INSERT INTO `persona` (`idpersona`,`dni`,`ap_paterno`,`ap_materno`,`nombres`,`email`,`telefono`,`direccion`,`ruc_institu`,`institucion`) VALUES 
+ (57,'74585852','MENDOZA','VEGA','ROGER SAUL','Roger23@hotmail.com','987644325','JR. PERU 678',NULL,NULL);
+/*!40000 ALTER TABLE `persona` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
+  `idroles` int(11) NOT NULL AUTO_INCREMENT,
+  `rol` varchar(200) NOT NULL,
+  PRIMARY KEY (`idroles`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`roles`
+--
+
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+INSERT INTO `roles` (`idroles`,`rol`) VALUES 
+ (1,'Administrador'),
+ (9,'Colaborador'),
+ (10,'Cliente');
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`tipodoc`
+--
+
+DROP TABLE IF EXISTS `tipodoc`;
+CREATE TABLE `tipodoc` (
+  `idtipodoc` int(11) NOT NULL AUTO_INCREMENT,
+  `tipodoc` varchar(50) NOT NULL,
+  PRIMARY KEY (`idtipodoc`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`tipodoc`
+--
+
+/*!40000 ALTER TABLE `tipodoc` DISABLE KEYS */;
+INSERT INTO `tipodoc` (`idtipodoc`,`tipodoc`) VALUES 
+ (1,'OFICIO'),
+ (2,'OFICIO MULTIPLE'),
+ (3,'MEMORANDUM'),
+ (4,'SOLICITUD'),
+ (5,'INFORME');
+/*!40000 ALTER TABLE `tipodoc` ENABLE KEYS */;
+
+
+--
+-- Table structure for table `db_hacdp`.`usuarios`
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE `usuarios` (
+  `idusuarios` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
+  `dni` varchar(8) NOT NULL,
+  `contraseña` varchar(150) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `fecharegistro` datetime NOT NULL,
+  `ultacceso` datetime DEFAULT NULL,
+  `fechaedicion` datetime NOT NULL,
+  `estado` varchar(50) NOT NULL,
+  `foto` text DEFAULT NULL,
+  `idroles` int(11) NOT NULL,
+  PRIMARY KEY (`idusuarios`),
+  KEY `idroles` (`idroles`),
+  CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`idroles`) REFERENCES `roles` (`idroles`)
+) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `db_hacdp`.`usuarios`
+--
+
+/*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
+INSERT INTO `usuarios` (`idusuarios`,`nombre`,`dni`,`contraseña`,`email`,`fecharegistro`,`ultacceso`,`fechaedicion`,`estado`,`foto`,`idroles`) VALUES 
+ (1,'Admin','78945612','123456','adminhacdp@gmail.com','2022-03-20 12:17:23','2022-03-20 12:17:23','2022-04-25 11:51:30','ACTIVO','files/images/1/logo.png',1),
+ (2,'Joel','72224693','UNRPl5RV','joelllalligiraldo@gmail.com','2022-03-20 12:18:12','2022-03-20 12:18:12','2022-05-21 10:07:19','ACTIVO','files/images/2/2_2022_72224693.jpg',9),
+ (5,'JimenaVC','78547854','jimena123','jimenm87@gmail.com	','2022-03-27 16:12:59',NULL,'2022-05-21 10:41:52','ACTIVO','files/images/5/5_2022_78547854.jpg',9),
+ (32,'PilarMC','78547835','pila23','pila2934@gmail.com','2022-04-21 12:34:48',NULL,'2022-04-23 21:41:05','ACTIVO','files/images/32/32_2022_78547835.jpg',9),
+ (33,'ManuelPC','12115441','manuel','Manuel@gmail.com','2022-04-21 17:36:56',NULL,'2022-04-25 12:51:37','DESACTIVADO','files/images/33/33_2022_12115441.jpg',9),
+ (34,'TeresaVA','78547343','123','cris456@outlook.com','2022-04-21 18:18:01',NULL,'2022-05-08 15:45:18','ACTIVO','files/images/34/34_2022_78547343.jpg',1),
+ (35,'YubitzaJV','74584126','123456789','jubi@gmail.com','2022-05-21 10:19:14',NULL,'2022-05-21 10:20:15','ACTIVO','files/images/0/persona.png',9);
+INSERT INTO `usuarios` (`idusuarios`,`nombre`,`dni`,`contraseña`,`email`,`fecharegistro`,`ultacceso`,`fechaedicion`,`estado`,`foto`,`idroles`) VALUES 
+ (36,'RogerMV','74585852','123','Roger23@hotmail.com','2022-05-21 10:49:51',NULL,'2022-05-21 10:49:51','ACTIVO','files/images/0/persona.png',9);
+/*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+
+
+--
+-- Function `db_hacdp`.`gen_nroexpediente`
+--
+
+DROP FUNCTION IF EXISTS `gen_nroexpediente`;
+DELIMITER $$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `gen_nroexpediente`() RETURNS varchar(6) CHARSET utf8mb4
+Begin
+  declare con int default 0;
+  declare cadena varchar(6) default '';
+	set con=(select max(iddocumento) from documento);
+  if(con is null) then
+    set cadena='000001';
+    else if((con+1)<10) then
+       set cadena=concat('00000',con+1);
+      else if((con+1)<100) then
+          set cadena=concat('0000',con+1);
+          else if((con+1)<1000) then
+              set cadena=concat('000',con+1);
+              else if((con+1)<10000) then
+                 set cadena=concat('00',con+1);
+                  else if((con+1)<100000) then
+                     set cadena=concat('0',con+1);
+                     else if((con+1)<1000000) then
+                         set cadena=concat('',con+1);
+                      end if;
+                  end if;
+              end if;
+          end if;
+      end if;
+    end if;
+  end if;
+Return cadena;
+
+End $$
+
+DELIMITER ;
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
