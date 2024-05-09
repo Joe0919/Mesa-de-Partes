@@ -1,8 +1,8 @@
-<?php 
-   require_once("../config/conexion2.php");
-   
-   $query=mysqli_query($conexion,"SELECT * FROM tipodoc");
- ?>
+<?php
+require_once("../config/conexion2.php");
+
+$query = mysqli_query($conexion, "SELECT * FROM tipodoc");
+?>
 
 
 
@@ -14,8 +14,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mesa de Partes Virtual - HACDP</title>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <link rel="stylesheet" href="../public/assets/css/mspartes.css">
   <link rel="stylesheet" href="../public/assets/dist/css/adminlte.min1.css">
   <link rel="shorcut icon" href="../public/assets/img/logo.png">
@@ -53,8 +52,7 @@
             Trámite</button>
         </div>
         <div class="col-md-2" id="divS">
-          <button type="button" id="btnSeguir" class="btn btn-primary"><i
-              class="fa fa-search"></i>&nbsp;&nbsp;Seguimiento</button>
+          <button type="button" id="btnSeguir" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;&nbsp;Seguimiento</button>
         </div>
       </div>
       <div class="card-body">
@@ -67,9 +65,8 @@
 
               <div class="card-body">
                 <span id="Avisoa" style="font-size:14px;color:green"><b>NOTA: Ud. se ha registrado antes, pero puede
-                    editar su número de Celular, Correo y Dirección si es necesario.</b></span>
-                <form id="formulario-tramite" onsubmit="submitForm(event)" name="formulario-tramite"
-                  enctype="multipart/form-data" method="post">
+                    editar su número de Celular, Correo y Dirección de ser necesario.</b></span>
+                <form id="formulario-tramite" onsubmit="submitForm(event)" name="formulario-tramite" enctype="multipart/form-data" method="post">
                   <label>Tipo de Persona: </label><span style="color: red;font-weight: 600;">
                     (*)</span>
 
@@ -77,15 +74,13 @@
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked
-                          value="natural">
+                        <input class="custom-control-input" type="radio" id="customRadio1" name="customRadio" checked value="natural">
                         <label for="customRadio1" class="custom-control-label">Natural</label>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="custom-control custom-radio">
-                        <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio"
-                          value="juridica">
+                        <input class="custom-control-input" type="radio" id="customRadio2" name="customRadio" value="juridica">
                         <label for="customRadio2" class="custom-control-label">Jurídica</label>
                       </div>
                     </div>
@@ -94,8 +89,7 @@
                     <div class="form-group">
                       <label>RUC </label><span style="color: red;font-weight: 600;">
                         (*)</span>
-                      <input type="text" class="form-control" id="idruc" name="idruc"
-                        onkeypress="return validaNumericos(event)" maxlength="11" minlength="11">
+                      <input type="text" class="form-control" id="idruc" name="idruc" onkeypress="return validaNumericos(event)" maxlength="11" minlength="11">
                     </div>
 
                     <div class="form-group">
@@ -109,8 +103,7 @@
                       <div class="form-group">
                         <input type="hidden" class="form-control" id="idpersona" name="idpersona">
                         <label>DNI</label><span style="color: red;font-weight: 600;"> (*)</span>
-                        <input type="text" class="form-control" onkeypress='return validaNumericos(event)' maxlength="8"
-                          minlength="8" name="iddni" id="iddni" required>
+                        <input type="text" class="form-control" onkeypress='return validaNumericos(event)' maxlength="8" minlength="8" name="iddni" id="iddni" required>
                       </div>
                     </div>
                     <div style="padding:0" class="col-sm-2">
@@ -144,8 +137,7 @@
                   <div class="form-group">
                     <label>N° Celular </label><span style="color: red;font-weight: 600;">
                       (*)</span>
-                    <input type="text" class="form-control" id="idcel" onkeypress='return validaNumericos(event)'
-                      minlength="9" maxlength="9" required name="idcel">
+                    <input type="text" class="form-control" id="idcel" onkeypress='return validaNumericos(event)' minlength="9" maxlength="9" required name="idcel">
                   </div>
                   <div class="form-group">
                     <label>Dirección </label><span style="color: red;font-weight: 600;">
@@ -174,18 +166,16 @@
 
                 <div class="form-group">
                   <label>Tipo</label><span style="color: red;font-weight: 600;"> (*)</span>
-                  <select style="width: 100%;height: 40px;font-weight:600;text-align:center;font-size:20px;" name="idtipo"
-                    id="idtipo">
-                    <?php 
-                                                      while($datos=mysqli_fetch_array($query))
-                                                      {
-                                                      ?>
-                    <option value="<?php echo $datos['idtipodoc']  ?>">
-                      <?php echo $datos['tipodoc'] ?>
-                      </optiomn>
-                      <?php 
-                                                      }
-                                                      ?>
+                  <select style="width: 100%;height: 40px;font-weight:600;text-align:center;font-size:20px;" name="idtipo" id="idtipo">
+                    <?php
+                    while ($datos = mysqli_fetch_array($query)) {
+                    ?>
+                      <option value="<?php echo $datos['idtipodoc']  ?>">
+                        <?php echo $datos['tipodoc'] ?>
+                        </optiomn>
+                      <?php
+                    }
+                      ?>
                   </select>
                   <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span>
                 </div>
@@ -194,8 +184,7 @@
                     <div class="form-group">
                       <label>N° Documento </label><span style="color: red;font-weight: 600;">
                         (*)</span>
-                      <input type="text" class="form-control" id="idnrodoc" onkeypress='return validaNumericos(event)'
-                        required name="idnrodoc">
+                      <input type="text" class="form-control" id="idnrodoc" onkeypress='return validaNumericos(event)' required name="idnrodoc">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -209,8 +198,7 @@
                 </div>
                 <div class="form-group">
                   <label>Asunto </label><span style="color: red;font-weight: 600;">(*)</span>
-                  <textarea class="form-control" rows="3" id="idasunto" placeholder="Ingrese el asunto del documento"
-                    required name="idasunto"></textarea>
+                  <textarea class="form-control" rows="3" id="idasunto" placeholder="Ingrese el asunto del documento" required name="idasunto"></textarea>
                 </div>
 
                 <div class="form-group">
@@ -224,8 +212,7 @@
 
                 </div>
                 <div class="custom-control custom-checkbox">
-                  <input class="form-check-input" style="width:20px;height:20px;" type="checkbox" id="check" name="check"
-                    value="option1" required>
+                  <input class="form-check-input" style="width:20px;height:20px;" type="checkbox" id="check" name="check" value="option1" required>
 
                   <label for="customCheckbox4" class="form-check-label">Declaro que la
                     información proporcionada es válida y verídica.
@@ -235,8 +222,7 @@
                 </div>
                 <br>
                 <div class="col-sm-12">
-                  <button type="submit" id="Enviar" class="btn btn-block btn-success"
-                    onclick="return RegistroDocumento()">Enviar Trámite</button>
+                  <button type="submit" id="Enviar" class="btn btn-block btn-success" onclick="return RegistroDocumento()">Enviar Trámite</button>
                 </div>
                 </form>
               </div>
@@ -244,203 +230,195 @@
           </div>
         </div>
         <div class="contenido" id="contenido" style="margin: 0 auto;width:100%;">
-      <section class="content">
-        <div class="container-fluid">
-          <div class="row">
-            <div class="col-12">
+          <section class="content">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
 
-              <div class="card card-primary" id="insert">
-                <div class="card-header">
-                  <h3 class="card-title" style="font-weight:600; color:white"><i
-                      class="fas fa-search"></i>&nbsp;&nbsp;BÚSQUEDA DE EXPEDIENTES</h3>
-                </div>
-
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <h3 style="font-size: 18px;">*Para realizar la búsqueda de un documento presentado debe de ingresar el
-                    Número de Expediente del Documento y seleccionar el año de presentación:</h3>
-                  <br>
-                  <div>
-
-                    <form id="FormBuscar">
-                      <div class="form-group row">
-                        &nbsp;&nbsp;&nbsp;
-                        <label class="etiqueta">Nro Expediente:</label>
-                        <div class="col-sm-2">
-                          <input type="email" class="form-control" id="idexpb"
-                            onkeypress="return validaNumericos(event)" maxlength="6">
-                        </div>
-                        &nbsp;&nbsp;&nbsp;
-                        <label class="etiqueta">DNI:</label>
-                        <div class="col-sm-2">
-                          <input type="email" class="form-control" id="iddnii"
-                            onkeypress="return validaNumericos(event)" maxlength="8">
-                        </div>
-                        &nbsp;&nbsp;&nbsp;
-                        <label class="etiqueta">Año:</label>
-                        <div class="col-sm-2">
-                          <select style="width:150px; font-weight:700; font-size:20px" class="form-control"
-                            id="idtipob">
-                            <option value="2022">2022</option>
-                          </select>
-
-                        </div>
-
-                        <div class="col-sm-3">
-                          <button style="width:200px;height:40px;font-size:18px;float: right;" type="button"
-                            id="btnBusca" class="btn btn-danger btn-block"><i
-                              class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;BUSCAR</button>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-
-              </div>
-
-              <div id="divNoFound">
-                <div class="callout callout-warning">
-                  <div class="row">
-                    <div class="col-sm-3" align="right">
-                      <img style="width: 140px; height: 140px;" src="../public/assets/img/error-404.png">
+                  <div class="card card-primary" id="insert">
+                    <div class="card-header">
+                      <h3 class="card-title" style="font-weight:600; color:white"><i class="fas fa-search"></i>&nbsp;&nbsp;BÚSQUEDA DE EXPEDIENTES</h3>
                     </div>
-                    <div class="col-sm-9">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <h3 style="font-size: 18px;">*Para realizar la búsqueda de un documento presentado debe de ingresar el
+                        Número de Expediente del Documento y seleccionar el año de presentación:</h3>
                       <br>
-                      <h3><i class="fas fa-exclamation-triangle text-warning"></i> TRÁMITE NO ENCONTRADO.</h3>
+                      <div>
 
-                      <p style="font-size:18px;">
-                        No se encontro el trámite con los datos ingresado, puede ser por que no existe un trámite
-                        registrado con esos datos.<br>
-                        <b>Por favor, intente realizar la búsqueda ingresando los datos correctos.<b>
-                      </p>
+                        <form id="FormBuscar">
+                          <div class="form-group row">
+                            &nbsp;&nbsp;&nbsp;
+                            <label class="etiqueta">Nro Expediente:</label>
+                            <div class="col-sm-2">
+                              <input type="email" class="form-control" id="idexpb" onkeypress="return validaNumericos(event)" maxlength="6">
+                            </div>
+                            &nbsp;&nbsp;&nbsp;
+                            <label class="etiqueta">DNI:</label>
+                            <div class="col-sm-2">
+                              <input type="email" class="form-control" id="iddnii" onkeypress="return validaNumericos(event)" maxlength="8">
+                            </div>
+                            &nbsp;&nbsp;&nbsp;
+                            <label class="etiqueta">Año:</label>
+                            <div class="col-sm-2">
+                              <select style="width:150px; font-weight:700; font-size:20px" class="form-control" id="idtipob">
+                                <option value="2022">2022</option>
+                              </select>
+
+                            </div>
+
+                            <div class="col-sm-3">
+                              <button style="width:200px;height:40px;font-size:18px;float: right;" type="button" id="btnBusca" class="btn btn-danger btn-block"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;BUSCAR</button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div id="divNoFound">
+                    <div class="callout callout-warning">
+                      <div class="row">
+                        <div class="col-sm-3" align="right">
+                          <img style="width: 140px; height: 140px;" src="../public/assets/img/error-404.png">
+                        </div>
+                        <div class="col-sm-9">
+                          <br>
+                          <h3><i class="fas fa-exclamation-triangle text-warning"></i> TRÁMITE NO ENCONTRADO.</h3>
+
+                          <p style="font-size:18px;">
+                            No se encontro el trámite con los datos ingresado, puede ser por que no existe un trámite
+                            registrado con esos datos.<br>
+                            <b>Por favor, intente realizar la búsqueda ingresando los datos correctos.<b>
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
 
-              <div class="card card-olive" id="dat">
-                <div class="card-header">
-                  <h3 class="card-title"><i class="fas fa-file-pdf "></i>&nbsp;&nbsp;
-                    DATOS DEL TRÁMITE REALIZADO
-                  </h3>
-                </div>
-                <div class="row">
-                  <div class="col-sm-7">
-
-                  </div>
-                  <div class="col-sm-5">
-                    <br>
+                  <div class="card card-olive" id="dat">
+                    <div class="card-header">
+                      <h3 class="card-title"><i class="fas fa-file-pdf "></i>&nbsp;&nbsp;
+                        DATOS DEL TRÁMITE REALIZADO
+                      </h3>
+                    </div>
                     <div class="row">
-                      <div class="col-md-6">
+                      <div class="col-sm-7">
 
-                        <button type="button" style="height:40px" class="btn btn-primary btn-block" id="btnNew"><i
-                            class="fa fa-search"></i>&nbsp;&nbsp;Nueva Búsqueda</button>
                       </div>
-                      <div class="col-md-5">
-                        <button type="button" style="height:40px" class="btn btn-danger btn-block" id="btnhistorial"><i
-                            class="fa fa-plus"></i>&nbsp;Mostrar Historial</button>
-                      </div>
-                      <div class="col-md-1">
+                      <div class="col-sm-5">
+                        <br>
+                        <div class="row">
+                          <div class="col-md-6">
 
+                            <button type="button" style="height:40px" class="btn btn-primary btn-block" id="btnNew"><i class="fa fa-search"></i>&nbsp;&nbsp;Nueva Búsqueda</button>
+                          </div>
+                          <div class="col-md-5">
+                            <button type="button" style="height:40px" class="btn btn-danger btn-block" id="btnhistorial"><i class="fa fa-plus"></i>&nbsp;Mostrar Historial</button>
+                          </div>
+                          <div class="col-md-1">
+
+                          </div>
+                        </div>
                       </div>
                     </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="callout callout-success">
+
+                            <table width="100%" border="2" cellspacing="0" cellpadding="5" id="tableDoc">
+                              <tr>
+                                <th colspan="2" style="background:#BDBDBD;text-align:center;">
+                                  <h5 style="font-weight:600">DATOS DEL DOCUMENTO</h5>
+                                  </font>
+                                </th>
+                              </tr>
+                              <tr style="text-align:center;font-size:20px">
+                                <th style="background:#D9D9D8;width: 45%;">Expediente</th>
+                                <td>
+                                  <p id="celdaexpe"></p>
+                                </td>
+                              </tr>
+                              <tr style="text-align:center;font-size:20px">
+                                <th style="background:#D9D9D8;">N° Documento</th>
+                                <td>
+                                  <p id="celdanro"></p>
+                                </td>
+                              </tr>
+                              <tr style="text-align:center;font-size:20px">
+                                <th style="background:#D9D9D8;">Tipo</th>
+                                <td>
+                                  <p id="celdatipo"></p>
+                                </td>
+                              </tr>
+                              <tr style="text-align:center;font-size:18px">
+                                <th style="background:#D9D9D8">Asunto</th>
+                                <td>
+                                  <p id="celdasunto"></p>
+                                </td>
+                              </tr>
+                            </table>
+
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="callout callout-info">
+
+                            <table width="100%" border="2 black " cellspacing="0" cellpadding="5" id="tableRemitente">
+                              <tr>
+                                <th colspan="2" style="background:#BDBDBD ; text-align:center">
+                                  <h5 style="font-weight:600">DATOS DEL REMITENTE</h5>
+
+                                </th>
+                              </tr>
+                              <tr style="text-align:center;font-size:18px">
+                                <th style="background:#D9D9D8;width: 45%;">DNI</th>
+                                <td>
+                                  <p id="celdadni"></p>
+                                </td>
+                              </tr>
+                              <tr style="text-align:center;font-size:18px">
+                                <th style="background:#D9D9D8;">Apellidos y Nombres</th>
+                                <td>
+                                  <p id="celdadatos"></p>
+                                </td>
+                              </tr>
+                              <tr style="text-align:center;font-size:18px">
+                                <th style="background:#D9D9D8;">RUc</th>
+                                <td>
+                                  <p id="celdaruc"></p>
+                                </td>
+                              </tr>
+                              <tr style="text-align:center;font-size:18px">
+                                <th style="background:#D9D9D8;">Entidad</th>
+                                <td>
+                                  <p id="celdaenti"></p>
+                                </td>
+                              </tr>
+                            </table>
+
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+
+                  </div>
+
+                  <!-- LINEA DE TIEMPO DEL DOCUMENTO -->
+                  <div id="linea">
+
                   </div>
                 </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="row">
-                    <div class="col-sm-6">
-                      <div class="callout callout-success">
-
-                        <table width="100%" border="2" cellspacing="0" cellpadding="5" id="tableDoc">
-                          <tr>
-                            <th colspan="2" style="background:#BDBDBD;text-align:center;">
-                              <h5 style="font-weight:600">DATOS DEL DOCUMENTO</h5>
-                              </font>
-                            </th>
-                          </tr>
-                          <tr style="text-align:center;font-size:20px">
-                            <th style="background:#D9D9D8;width: 45%;">Expediente</th>
-                            <td>
-                              <p id="celdaexpe"></p>
-                            </td>
-                          </tr>
-                          <tr style="text-align:center;font-size:20px">
-                            <th style="background:#D9D9D8;">N° Documento</th>
-                            <td>
-                              <p id="celdanro"></p>
-                            </td>
-                          </tr>
-                          <tr style="text-align:center;font-size:20px">
-                            <th style="background:#D9D9D8;">Tipo</th>
-                            <td>
-                              <p id="celdatipo"></p>
-                            </td>
-                          </tr>
-                          <tr style="text-align:center;font-size:18px">
-                            <th style="background:#D9D9D8">Asunto</th>
-                            <td>
-                              <p id="celdasunto"></p>
-                            </td>
-                          </tr>
-                        </table>
-
-                      </div>
-                    </div>
-                    <div class="col-sm-6">
-                      <div class="callout callout-info">
-
-                        <table width="100%" border="2 black " cellspacing="0" cellpadding="5" id="tableRemitente">
-                          <tr>
-                            <th colspan="2" style="background:#BDBDBD ; text-align:center">
-                              <h5 style="font-weight:600">DATOS DEL REMITENTE</h5>
-                              
-                            </th>
-                          </tr>
-                          <tr style="text-align:center;font-size:18px">
-                            <th style="background:#D9D9D8;width: 45%;">DNI</th>
-                            <td>
-                              <p id="celdadni"></p>
-                            </td>
-                          </tr>
-                          <tr style="text-align:center;font-size:18px">
-                            <th style="background:#D9D9D8;r">Apellidos y Nombres</th>
-                            <td>
-                              <p id="celdadatos"></p>
-                            </td>
-                          </tr>
-                          <tr style="text-align:center;font-size:18px">
-                            <th style="background:#D9D9D8;">RUc</th>
-                            <td>
-                              <p id="celdaruc"></p>
-                            </td>
-                          </tr>
-                          <tr style="text-align:center;font-size:18px">
-                            <th style="background:#D9D9D8;">Entidad</th>
-                            <td>
-                              <p id="celdaenti"></p>
-                            </td>
-                          </tr>
-                        </table>
-
-                      </div>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <!-- LINEA DE TIEMPO DEL DOCUMENTO -->
-              <div id="linea">
 
               </div>
             </div>
 
-          </div>
         </div>
-
-    </div>
       </div>
 
     </div>

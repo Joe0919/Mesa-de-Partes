@@ -7,32 +7,28 @@ $(document).ready(function () {
   $("#vista1").hide();
   $("#editara").hide();
   $("#finalizar").hide();
-  $('#mostrar').hide();
-  $('#divNoFound').hide();
-  $('#dat').hide();
-  $('#linea').hide();
-  $('#re').hide();
-  $('#reportrango').hide()
+  $("#mostrar").hide();
+  $("#divNoFound").hide();
+  $("#dat").hide();
+  $("#linea").hide();
+  $("#re").hide();
+  $("#reportrango").hide();
   // $('#cboreport1').val('0');
-  
-  var user_id, id, opcion, dnipersona, ruc, archi, año, area, estado,bdr;
+
+  var user_id, id, opcion, dnipersona, ruc, archi, año, area, estado, bdr;
   opcion = 4;
   idarea = $("#idareaid").val();
   area = $("#idarealogin").val();
   estado = $("#cbovista").val();
-  
-  
+
   bdr = 1;
   $("input[name='customRadio']").change(function () {
-      if ($(this).val() == 'juridica') {
-          $('#mostrar').show();
-      }
-      else {
-          $('#mostrar').hide();
-      }
+    if ($(this).val() == "juridica") {
+      $("#mostrar").show();
+    } else {
+      $("#mostrar").hide();
+    }
   });
-
-  
 
   /*=============================   MOSTRAR TABLA DE USUARIOS  ================================= */
   tablaUsuarios = $("#tablaUsuarios").DataTable({
@@ -46,24 +42,33 @@ $(document).ready(function () {
       data: { opcion: opcion }, //enviamos opcion 4 para que haga un SELECT
       dataSrc: "",
     },
+    ordering: false,
     columns: [
       { data: "idusuarios" },
       { data: "nombre" },
       { data: "dni" },
       { data: "email" },
-      {"data": 'estado',"render": function (data, type) {
-        let country = '';
-        switch (data) {
-            case 'ACTIVO':
-                country = 'bg-success';
-                break;
-            case 'DESACTIVADO':
-                country = 'bg-gray';
-                break;
-        }
-        return  '<span style="font-size:14px"  class="badge ' + country + '">'+ data +'</span> ' ;  
-}
-},
+      {
+        data: "estado",
+        render: function (data, type) {
+          let country = "";
+          switch (data) {
+            case "ACTIVO":
+              country = "bg-success";
+              break;
+            case "DESACTIVADO":
+              country = "bg-gray";
+              break;
+          }
+          return (
+            '<span style="font-size:14px"  class="badge ' +
+            country +
+            '">' +
+            data +
+            "</span> "
+          );
+        },
+      },
       {
         defaultContent:
           "<div class='text-center'><div class='btn-group'><button class='btn btn-warning btn-sm btnEditfoto'><i class='material-icons'>account_circle</i></button></div></div>",
@@ -86,6 +91,7 @@ $(document).ready(function () {
       data: { opcion: opcion }, //enviamos opcion 4 para que haga un SELECT
       dataSrc: "",
     },
+    ordering: false,
     columns: [
       { data: "ID" },
       { data: "Codigo" },
@@ -111,6 +117,7 @@ $(document).ready(function () {
       data: { opcion: opcion }, //enviamos opcion 4 para que haga un SELECT
       dataSrc: "",
     },
+    ordering: false,
     columns: [
       { data: "ID" },
       { data: "cod_area" },
@@ -134,6 +141,7 @@ $(document).ready(function () {
       data: { opcion: opcion }, //enviamos opcion 4 para que haga un SELECT
       dataSrc: "",
     },
+    ordering: false,
     columns: [
       { data: "expediente" },
       { data: "Fecha" },
@@ -142,29 +150,37 @@ $(document).ready(function () {
       { data: "Datos" },
       { data: "origen" },
       { data: "area" },
-      {"data": 'estado',"render": function (data, type) {
-        let country = '';
-        switch (data) {
-            case 'PENDIENTE':
-                country = 'bg-black';
-                break;
-            case 'ACEPTADO':
-                country = 'bg-success';
-                break;
-            case 'RECHAZADO':
-                country = 'bg-danger';
-                break;
-            case 'ARCHIVADO':
-                country = 'bg-primary';
-                break;
-        }
-        return  '<span style="font-size:14px"  class="badge ' + country + '">'+ data +'</span> ' ;  
-}
-},
+      {
+        data: "estado",
+        render: function (data, type) {
+          let country = "";
+          switch (data) {
+            case "PENDIENTE":
+              country = "bg-black";
+              break;
+            case "ACEPTADO":
+              country = "bg-success";
+              break;
+            case "RECHAZADO":
+              country = "bg-danger";
+              break;
+            case "ARCHIVADO":
+              country = "bg-primary";
+              break;
+          }
+          return (
+            '<span style="font-size:14px"  class="badge ' +
+            country +
+            '">' +
+            data +
+            "</span> "
+          );
+        },
+      },
       {
         defaultContent:
           "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-dark btn-sm btnMas'><i class='material-icons'>add_circle</i></button></div></div>",
-      }
+      },
     ],
   });
   /*=============================   MOSTRAR TABLA DE TRÁMITES RECIBIDOS CON ESTADO PENDIENTE================================= */
@@ -176,9 +192,16 @@ $(document).ready(function () {
     ajax: {
       url: "../../controller/cruddocumento.php",
       method: "POST", //usamos el metodo POST
-      data: { opcion: opcion, area: area, estado: estado, idarea: idarea, bdr:bdr }, //enviamos opcion 4 para que haga un SELECT
+      data: {
+        opcion: opcion,
+        area: area,
+        estado: estado,
+        idarea: idarea,
+        bdr: bdr,
+      }, //enviamos opcion 4 para que haga un SELECT
       dataSrc: "",
     },
+    ordering: false,
     columns: [
       { data: "expediente" },
       { data: "Fecha" },
@@ -210,6 +233,7 @@ $(document).ready(function () {
       data: { opcion: opcion, area: area }, //enviamos opcion 4 para que haga un SELECT
       dataSrc: "",
     },
+    ordering: false,
     columns: [
       { data: "expediente" },
       { data: "Fecha" },
@@ -218,25 +242,33 @@ $(document).ready(function () {
       { data: "Datos" },
       { data: "origen" },
       { data: "area" },
-      {"data": 'estado',"render": function (data, type) {
-        let country = '';
-        switch (data) {
-            case 'PENDIENTE':
-                country = 'bg-black';
-                break;
-            case 'ACEPTADO':
-                country = 'bg-success';
-                break;
-            case 'RECHAZADO':
-                country = 'bg-danger';
-                break;
-            case 'ARCHIVADO':
-                country = 'bg-primary';
-                break;
-        }
-        return  '<span style="font-size:14px"  class="badge ' + country + '">'+ data +'</span> ' ;  
-}
-},
+      {
+        data: "estado",
+        render: function (data, type) {
+          let country = "";
+          switch (data) {
+            case "PENDIENTE":
+              country = "bg-black";
+              break;
+            case "ACEPTADO":
+              country = "bg-success";
+              break;
+            case "RECHAZADO":
+              country = "bg-danger";
+              break;
+            case "ARCHIVADO":
+              country = "bg-primary";
+              break;
+          }
+          return (
+            '<span style="font-size:14px"  class="badge ' +
+            country +
+            '">' +
+            data +
+            "</span> "
+          );
+        },
+      },
       {
         defaultContent:
           "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-dark btn-sm btnMas'><i class='material-icons'>add_circle</i></button></div></div>",
@@ -285,6 +317,7 @@ $(document).ready(function () {
             }, //enviamos opcion 4 para que haga un SELECT
             dataSrc: "",
           },
+          ordering: false,
           columns: [
             { data: "expediente" },
             { data: "Fecha" },
@@ -293,25 +326,33 @@ $(document).ready(function () {
             { data: "Datos" },
             { data: "origen" },
             { data: "area" },
-            {"data": 'estado',"render": function (data, type) {
-              let country = '';
-              switch (data) {
-                  case 'PENDIENTE':
-                      country = 'bg-black';
-                      break;
-                  case 'ACEPTADO':
-                      country = 'bg-success';
-                      break;
-                  case 'RECHAZADO':
-                      country = 'bg-danger';
-                      break;
-                  case 'ARCHIVADO':
-                      country = 'bg-primary';
-                      break;
-              }
-              return  '<span style="font-size:14px"  class="badge ' + country + '">'+ data +'</span> ' ;  
-      }
-      },
+            {
+              data: "estado",
+              render: function (data, type) {
+                let country = "";
+                switch (data) {
+                  case "PENDIENTE":
+                    country = "bg-black";
+                    break;
+                  case "ACEPTADO":
+                    country = "bg-success";
+                    break;
+                  case "RECHAZADO":
+                    country = "bg-danger";
+                    break;
+                  case "ARCHIVADO":
+                    country = "bg-primary";
+                    break;
+                }
+                return (
+                  '<span style="font-size:14px"  class="badge ' +
+                  country +
+                  '">' +
+                  data +
+                  "</span> "
+                );
+              },
+            },
             {
               defaultContent:
                 "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-dark btn-sm btnMas'><i class='material-icons'>add_circle</i></button></div></div>",
@@ -345,6 +386,7 @@ $(document).ready(function () {
             }, //enviamos opcion 4 para que haga un SELECT
             dataSrc: "",
           },
+          ordering: false,
           columns: [
             { data: "expediente" },
             { data: "Fecha" },
@@ -353,25 +395,33 @@ $(document).ready(function () {
             { data: "Datos" },
             { data: "origen" },
             { data: "area" },
-            {"data": 'estado',"render": function (data, type) {
-              let country = '';
-              switch (data) {
-                  case 'PENDIENTE':
-                      country = 'bg-black';
-                      break;
-                  case 'ACEPTADO':
-                      country = 'bg-success';
-                      break;
-                  case 'RECHAZADO':
-                      country = 'bg-danger';
-                      break;
-                  case 'ARCHIVADO':
-                      country = 'bg-primary';
-                      break;
-              }
-              return  '<span style="font-size:14px"  class="badge ' + country + '">'+ data +'</span> ' ;  
-      }
-      },
+            {
+              data: "estado",
+              render: function (data, type) {
+                let country = "";
+                switch (data) {
+                  case "PENDIENTE":
+                    country = "bg-black";
+                    break;
+                  case "ACEPTADO":
+                    country = "bg-success";
+                    break;
+                  case "RECHAZADO":
+                    country = "bg-danger";
+                    break;
+                  case "ARCHIVADO":
+                    country = "bg-primary";
+                    break;
+                }
+                return (
+                  '<span style="font-size:14px"  class="badge ' +
+                  country +
+                  '">' +
+                  data +
+                  "</span> "
+                );
+              },
+            },
             {
               defaultContent:
                 "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-dark btn-sm btnMas'><i class='material-icons'>add_circle</i></button></div></div>",
@@ -405,6 +455,7 @@ $(document).ready(function () {
             }, //enviamos opcion 4 para que haga un SELECT
             dataSrc: "",
           },
+          ordering: false,
           columns: [
             { data: "expediente" },
             { data: "Fecha" },
@@ -413,25 +464,33 @@ $(document).ready(function () {
             { data: "Datos" },
             { data: "origen" },
             { data: "area" },
-            {"data": 'estado',"render": function (data, type) {
-              let country = '';
-              switch (data) {
-                  case 'PENDIENTE':
-                      country = 'bg-black';
-                      break;
-                  case 'ACEPTADO':
-                      country = 'bg-success';
-                      break;
-                  case 'RECHAZADO':
-                      country = 'bg-danger';
-                      break;
-                  case 'ARCHIVADO':
-                      country = 'bg-primary';
-                      break;
-              }
-              return  '<span style="font-size:14px"  class="badge ' + country + '">'+ data +'</span> ' ;  
-      }
-      },
+            {
+              data: "estado",
+              render: function (data, type) {
+                let country = "";
+                switch (data) {
+                  case "PENDIENTE":
+                    country = "bg-black";
+                    break;
+                  case "ACEPTADO":
+                    country = "bg-success";
+                    break;
+                  case "RECHAZADO":
+                    country = "bg-danger";
+                    break;
+                  case "ARCHIVADO":
+                    country = "bg-primary";
+                    break;
+                }
+                return (
+                  '<span style="font-size:14px"  class="badge ' +
+                  country +
+                  '">' +
+                  data +
+                  "</span> "
+                );
+              },
+            },
             {
               defaultContent:
                 "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-dark btn-sm btnMas'><i class='material-icons'>add_circle</i></button></div></div>",
@@ -464,6 +523,7 @@ $(document).ready(function () {
             }, //enviamos opcion 4 para que haga un SELECT
             dataSrc: "",
           },
+          ordering: false,
           columns: [
             { data: "expediente" },
             { data: "Fecha" },
@@ -472,25 +532,33 @@ $(document).ready(function () {
             { data: "Datos" },
             { data: "origen" },
             { data: "area" },
-            {"data": 'estado',"render": function (data, type) {
-              let country = '';
-              switch (data) {
-                  case 'PENDIENTE':
-                      country = 'bg-black';
-                      break;
-                  case 'ACEPTADO':
-                      country = 'bg-success';
-                      break;
-                  case 'RECHAZADO':
-                      country = 'bg-danger';
-                      break;
-                  case 'ARCHIVADO':
-                      country = 'bg-primary';
-                      break;
-              }
-              return  '<span style="font-size:14px"  class="badge ' + country + '">'+ data +'</span> ' ;  
-      }
-      },
+            {
+              data: "estado",
+              render: function (data, type) {
+                let country = "";
+                switch (data) {
+                  case "PENDIENTE":
+                    country = "bg-black";
+                    break;
+                  case "ACEPTADO":
+                    country = "bg-success";
+                    break;
+                  case "RECHAZADO":
+                    country = "bg-danger";
+                    break;
+                  case "ARCHIVADO":
+                    country = "bg-primary";
+                    break;
+                }
+                return (
+                  '<span style="font-size:14px"  class="badge ' +
+                  country +
+                  '">' +
+                  data +
+                  "</span> "
+                );
+              },
+            },
             {
               defaultContent:
                 "<div class='text-center'><div class='btn-group'><button class='btn btn-outline-dark btn-sm btnMas'><i class='material-icons'>add_circle</i></button></div></div>",
@@ -508,7 +576,7 @@ $(document).ready(function () {
   });
   var fila; //captura la fila, para editar o eliminar
 
-/*=============================   INICIO DE CRUD DE LAS TABLAS  ================================= */
+  /*=============================   INICIO DE CRUD DE LAS TABLAS  ================================= */
 
   /*=============================   CRUD DE TABLA USUARIOS  ================================= */
   $("#idni").blur(function () {
@@ -527,7 +595,6 @@ $(document).ready(function () {
           success: function (response) {
             alert(response);
             switch (response) {
-              
               case "1":
                 $("#Aviso").text("DNI ya está registrado").css("color", "red");
                 break;
@@ -708,11 +775,11 @@ $(document).ready(function () {
     user_id = parseInt($(this).closest("tr").find("td:eq(0)").text());
     usu = $(this).closest("tr").find("td:eq(1)").text();
     $("#modaleditpsw1").modal({ backdrop: "static", keyboard: false });
-    $('#idc').text(usu);
+    $("#idc").text(usu);
   });
 
   $(document).on("click", ".btnEditfoto", function () {
-    $("#FotoP").attr("src",""); 
+    $("#FotoP").attr("src", "");
     opcion = 6;
     fila = $(this).closest("tr");
     user_id = parseInt(fila.find("td:eq(0)").text()); //capturo el ID
@@ -724,11 +791,10 @@ $(document).ready(function () {
       data: { opcion: opcion, user_id: user_id, idni: idni },
       success: function (response) {
         data = $.parseJSON(response);
-        $('#iddni1').val(idni);
-        $('#idusua').val(user_id);
-        $("#FotoP").attr("src","/Sistema_MesaPartes/" + data[0]["foto"]);
+        $("#iddni1").val(idni);
+        $("#idusua").val(user_id);
+        $("#FotoP").attr("src", "/Sistema_MesaPartes/" + data[0]["foto"]);
         $("#modalfoto").modal("show");
-        
       },
     });
   });
@@ -784,7 +850,8 @@ $(document).ready(function () {
     });
   });
 
-  $(document).on("click", ".btnEditar", function () {//Mostrar datos de usuario para edicion
+  $(document).on("click", ".btnEditar", function () {
+    //Mostrar datos de usuario para edicion
     opcion = 6;
     fila = $(this).closest("tr");
     user_id = parseInt(fila.find("td:eq(0)").text()); //capturo el ID
@@ -829,8 +896,16 @@ $(document).ready(function () {
     inomusu = $.trim($("#inomusu1").val());
     tipo = $("#tipo1").val();
     estado = $("#estado1").val();
-    if (idni.length <= 7 || inombre.length <= 0 || iappat.length <= 0 || iapmat.length <= 0 || icel.length <= 0 || idir.length <= 0 || iemail.length <= 0
-      || inomusu.length <= 0) {
+    if (
+      idni.length <= 7 ||
+      inombre.length <= 0 ||
+      iappat.length <= 0 ||
+      iapmat.length <= 0 ||
+      icel.length <= 0 ||
+      idir.length <= 0 ||
+      iemail.length <= 0 ||
+      inomusu.length <= 0
+    ) {
       alert("Debe Completar correctamente todos los campos");
     } else {
       Swal.fire({
@@ -848,7 +923,21 @@ $(document).ready(function () {
             url: "../../controller/crudusu.php",
             type: "POST",
             datatype: "json",
-            data: {opcion: opcion,idper:idper,user_id:user_id,idni:idni,inombre:inombre,iappat:iappat,iapmat:iapmat,icel:icel,idir:idir,iemail:iemail,inomusu:inomusu,tipo:tipo,estado:estado},
+            data: {
+              opcion: opcion,
+              idper: idper,
+              user_id: user_id,
+              idni: idni,
+              inombre: inombre,
+              iappat: iappat,
+              iapmat: iapmat,
+              icel: icel,
+              idir: idir,
+              iemail: iemail,
+              inomusu: inomusu,
+              tipo: tipo,
+              estado: estado,
+            },
             success: function (response) {
               data = $.parseJSON(response);
               if (data == 1) {
@@ -857,14 +946,17 @@ $(document).ready(function () {
                 );
               } else {
                 if (data == 2) {
-
                   limpiarcampos();
                   MostrarAlerta("Hecho", "Usted realizo el cambio", "success");
                   tablaUsuarios.ajax.reload(null, false);
                   $("#modalEdusuario").modal("hide");
                 } else {
                   limpiarcampos();
-                  MostrarAlerta("Hecho","Los datos fueron actualizados","success");
+                  MostrarAlerta(
+                    "Hecho",
+                    "Los datos fueron actualizados",
+                    "success"
+                  );
                   tablaUsuarios.ajax.reload(null, false);
                   $("#modalEdusuario").modal("hide");
                 }
@@ -896,12 +988,16 @@ $(document).ready(function () {
           url: "../../controller/crudusu.php",
           type: "POST",
           datatype: "json",
-          data: { opcion: opcion, idni:idni},
+          data: { opcion: opcion, idni: idni },
           success: function (response) {
             data = $.parseJSON(response);
             if (data == 1) {
-              MostrarAlerta("Se tiene asociado datos","El registro tiene datos asociado por lo que no se puede eliminar","error");    
-            }else{
+              MostrarAlerta(
+                "Se tiene asociado datos",
+                "El registro tiene datos asociado por lo que no se puede eliminar",
+                "error"
+              );
+            } else {
               MostrarAlerta("Hecho", "Se eiiminó al usuario", "success");
               tablaUsuarios.row(fila.parents("tr")).remove().draw();
             }
@@ -911,62 +1007,18 @@ $(document).ready(function () {
     });
   });
 
-    //EDITAR CONTRASEÑA
-    $("#BtnContra").click(function () {
-      opcion = 9;
-      ipswa = $("#ipsw").val();
-      ipsw = $("#ipasss1").val();
-      ipswn = $("#ipassco1").val();
-      if (ipswa.length <= 0 || ipsw.length <= 0 || ipswn.length <= 0) {
-        alert("Los campos no deben estar vacios");
-      } else {
-        Swal.fire({
-          title: "¿Estás seguro?",
-          text: "Se hará el cambio de contraseña",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Cancelar",
-          confirmButtonText: "Si, Actualizar",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-              url: "../../controller/crudusu.php",
-              type: "POST",
-              datatype: "json",
-              data: {opcion:opcion,user_id:user_id,ipswa:ipswa,ipswn:ipswn},
-              success: function (response) {
-                data = $.parseJSON(response);
-                alert(data);
-                if (data == 1) {
-
-                    MostrarAlerta("Incorrecto", "La contraseña actual ingresada es incorrecta", "error");
-                } else {
-                  $("#modaleditpsw").modal("hide");
-                  ResetForm("formC");
-                  $("#error3").text("");
-                  MostrarAlerta("Éxito", "Se hizo el cambio de contraseña", "success");
-                }
-              },
-            });
-          }
-        });
-      }
-    });
-
-    $("#SalirC").click(function () {
-      ResetForm("formC");
-      $("#error3").text("");
-    });
-
-    //CAMBIO DE FOTO
-    $("#FormFoto").on('submit', function(e){
-      e.preventDefault();
-      opcion = 10;
+  //EDITAR CONTRASEÑA
+  $("#BtnContra").click(function () {
+    opcion = 9;
+    ipswa = $("#ipsw").val();
+    ipsw = $("#ipasss1").val();
+    ipswn = $("#ipassco1").val();
+    if (ipswa.length <= 0 || ipsw.length <= 0 || ipswn.length <= 0) {
+      alert("Los campos no deben estar vacios");
+    } else {
       Swal.fire({
         title: "¿Estás seguro?",
-        text: "Cambiar la foto de perfil",
+        text: "Se hará el cambio de contraseña",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
@@ -975,167 +1027,253 @@ $(document).ready(function () {
         confirmButtonText: "Si, Actualizar",
       }).then((result) => {
         if (result.isConfirmed) {
-            $.ajax({
-                type: 'POST',
-                url: '../../controller/crudusu.php',
-                data: new FormData(this),
-                contentType: false,
-                processData:false,
-                beforeSend: function(){},
-                success: function(msg){
-                  MostrarAlerta("Hecho", "Se hizo el cambio de la foto de perfil", "success");
-                  ResetForm('FormFoto');  
-                  $("#modalfoto").modal("hide");
-                  $("#FotoP").attr("src","");
-                }
-            });
-      }
-    });
-  });
-
-    $("#idfile1").change(function() {
-      var file = this.files[0];
-      var imagefile = file.type;
-      var match= "image/jpeg";
-      if(imagefile != match){
-          alert('Porfavor selecciona un imagen de tipo: JPG.');
-          $("#idfile1").val('');
-          return false;
-      }
-  });
-  
-  $("#idfilep").change(function() {
-    var file = this.files[0];
-    var imagefile = file.type;
-    var match= "image/jpeg";
-    if(imagefile != match){
-        alert('Porfavor selecciona un imagen de tipo: JPG.');
-        $("#idfilep").val('');
-        return false;
-    }else{
-        
+          $.ajax({
+            url: "../../controller/crudusu.php",
+            type: "POST",
+            datatype: "json",
+            data: {
+              opcion: opcion,
+              user_id: user_id,
+              ipswa: ipswa,
+              ipswn: ipswn,
+            },
+            success: function (response) {
+              data = $.parseJSON(response);
+              alert(data);
+              if (data == 1) {
+                MostrarAlerta(
+                  "Incorrecto",
+                  "La contraseña actual ingresada es incorrecta",
+                  "error"
+                );
+              } else {
+                $("#modaleditpsw").modal("hide");
+                ResetForm("formC");
+                $("#error3").text("");
+                MostrarAlerta(
+                  "Éxito",
+                  "Se hizo el cambio de contraseña",
+                  "success"
+                );
+              }
+            },
+          });
+        }
+      });
     }
-});
-
-$("#Conf").click(function () {//Mostrar modal de datos del perfil
-  opcion = 6;
-  user_id = $("#iduser").val();
-  idni = $("#dniuser").val();
-  $.ajax({
-    url: "../../controller/crudusu.php",
-    type: "POST",
-    datatype: "json",
-    data: { opcion: opcion, user_id: user_id, idni: idni },
-    success: function (response) {
-      data = $.parseJSON(response);
-      $("#idusup").val(data[0]["ID1"]);
-      $("#idperp").val(data[0]["ID2"]);
-      $("#idnip").val(data[0]["dni"]);
-      $("#idnip").prop('readonly', true);
-      $("#inombrep").val(data[0]["nombres"]);
-      $("#iappatp").val(data[0]["ap"]);
-      $("#iapmatp").val(data[0]["am"]);
-      $("#icelp").val(data[0]["telefono"]);
-      $("#idirp").val(data[0]["direccion"]);
-      $("#iemailp").val(data[0]["email"]);
-      $("#inomusup").val(data[0]["nombre"]);
-
-      $("#modalUsu").modal({ backdrop: "static", keyboard: false });
-    },
   });
-});
 
-$("#Actualizar").click(function () {
-  opcion = 12;
-  idper = $("#idperp").val();
-  user_id = $("#idusup").val();
-  inombre = $.trim($("#inombrep").val());
-  iappat = $.trim($("#iappatp").val());
-  iapmat = $.trim($("#iapmatp").val());
-  icel = $.trim($("#icelp").val());
-  idir = $.trim($("#idirp").val());
-  iemail = $.trim($("#iemailp").val());
-  inomusu = $.trim($("#inomusup").val());
-  if (idni.length <= 7 || inombre.length <= 0 || iappat.length <= 0 || iapmat.length <= 0 || icel.length <= 0 || idir.length <= 0 || iemail.length <= 0
-    || inomusu.length <= 0) {
-    alert("Debe Completar correctamente todos los campos");
-  } else {
+  $("#SalirC").click(function () {
+    ResetForm("formC");
+    $("#error3").text("");
+  });
+
+  //CAMBIO DE FOTO
+  $("#FormFoto").on("submit", function (e) {
+    e.preventDefault();
+    opcion = 10;
     Swal.fire({
       title: "¿Estás seguro?",
-      text: "Editar los datos del usuario",
+      text: "Cambiar la foto de perfil",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
       cancelButtonText: "Cancelar",
-      confirmButtonText: "Si, editar",
+      confirmButtonText: "Si, Actualizar",
     }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
-          url: "../../controller/crudusu.php",
           type: "POST",
-          datatype: "json",
-          data: {opcion: opcion,idper:idper,user_id:user_id,inombre:inombre,iappat:iappat,iapmat:iapmat,icel:icel,idir:idir,iemail:iemail,inomusu:inomusu},
-          success: function (response) {
-            data = $.parseJSON(response);
-            if (data == 1) {
-              alert("El Email o nombre de usuario genera duplicidad");
-            } else {
-              if (data == 2) {
-
-                limpiarcampos();
-                MostrarAlerta("Hecho", "Usted realizo el cambio", "success");
-                tablaUsuarios.ajax.reload(null, false);
-                $("#modalEdusuario").modal("hide");
-              } else {
-                ResetForm('formperfil');
-                MostrarAlerta("Hecho","Se actualizaron sus datos.","success");
-                $("#modalUsu").modal("hide");
-              }
-            }
+          url: "../../controller/crudusu.php",
+          data: new FormData(this),
+          contentType: false,
+          processData: false,
+          beforeSend: function () {},
+          success: function (msg) {
+            MostrarAlerta(
+              "Hecho",
+              "Se hizo el cambio de la foto de perfil",
+              "success"
+            );
+            ResetForm("FormFoto");
+            $("#modalfoto").modal("hide");
+            $("#FotoP").attr("src", "");
           },
         });
       }
     });
-  }
-});
+  });
 
-$("#Fot").click(function () {//Mostrar modal de foto de perfil
-      $("#modalfotop").modal({ backdrop: "static", keyboard: false });
-});
+  $("#idfile1").change(function () {
+    var file = this.files[0];
+    var imagefile = file.type;
+    var match = "image/jpeg";
+    if (imagefile != match) {
+      alert("Porfavor selecciona un imagen de tipo: JPG.");
+      $("#idfile1").val("");
+      return false;
+    }
+  });
 
-$("#FormFotop").on('submit', function(e){
-  e.preventDefault();
-  opcion = 13;
-  Swal.fire({
-    title: "¿Estás seguro?",
-    text: "Cambiar la foto de su perfil",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    cancelButtonText: "Cancelar",
-    confirmButtonText: "Si, Actualizar",
-  }).then((result) => {
-    if (result.isConfirmed) {
+  $("#idfilep").change(function () {
+    var file = this.files[0];
+    var imagefile = file.type;
+    var match = "image/jpeg";
+    if (imagefile != match) {
+      alert("Porfavor selecciona un imagen de tipo: JPG.");
+      $("#idfilep").val("");
+      return false;
+    } else {
+    }
+  });
+
+  $("#Conf").click(function () {
+    //Mostrar modal de datos del perfil
+    opcion = 6;
+    user_id = $("#iduser").val();
+    idni = $("#dniuser").val();
+    $.ajax({
+      url: "../../controller/crudusu.php",
+      type: "POST",
+      datatype: "json",
+      data: { opcion: opcion, user_id: user_id, idni: idni },
+      success: function (response) {
+        data = $.parseJSON(response);
+        $("#idusup").val(data[0]["ID1"]);
+        $("#idperp").val(data[0]["ID2"]);
+        $("#idnip").val(data[0]["dni"]);
+        $("#idnip").prop("readonly", true);
+        $("#inombrep").val(data[0]["nombres"]);
+        $("#iappatp").val(data[0]["ap"]);
+        $("#iapmatp").val(data[0]["am"]);
+        $("#icelp").val(data[0]["telefono"]);
+        $("#idirp").val(data[0]["direccion"]);
+        $("#iemailp").val(data[0]["email"]);
+        $("#inomusup").val(data[0]["nombre"]);
+
+        $("#modalUsu").modal({ backdrop: "static", keyboard: false });
+      },
+    });
+  });
+
+  $("#Actualizar").click(function () {
+    opcion = 12;
+    idper = $("#idperp").val();
+    user_id = $("#idusup").val();
+    inombre = $.trim($("#inombrep").val());
+    iappat = $.trim($("#iappatp").val());
+    iapmat = $.trim($("#iapmatp").val());
+    icel = $.trim($("#icelp").val());
+    idir = $.trim($("#idirp").val());
+    iemail = $.trim($("#iemailp").val());
+    inomusu = $.trim($("#inomusup").val());
+    if (
+      idni.length <= 7 ||
+      inombre.length <= 0 ||
+      iappat.length <= 0 ||
+      iapmat.length <= 0 ||
+      icel.length <= 0 ||
+      idir.length <= 0 ||
+      iemail.length <= 0 ||
+      inomusu.length <= 0
+    ) {
+      alert("Debe Completar correctamente todos los campos");
+    } else {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Editar los datos del usuario",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, editar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "../../controller/crudusu.php",
+            type: "POST",
+            datatype: "json",
+            data: {
+              opcion: opcion,
+              idper: idper,
+              user_id: user_id,
+              inombre: inombre,
+              iappat: iappat,
+              iapmat: iapmat,
+              icel: icel,
+              idir: idir,
+              iemail: iemail,
+              inomusu: inomusu,
+            },
+            success: function (response) {
+              data = $.parseJSON(response);
+              if (data == 1) {
+                alert("El Email o nombre de usuario genera duplicidad");
+              } else {
+                if (data == 2) {
+                  limpiarcampos();
+                  MostrarAlerta("Hecho", "Usted realizo el cambio", "success");
+                  tablaUsuarios.ajax.reload(null, false);
+                  $("#modalEdusuario").modal("hide");
+                } else {
+                  ResetForm("formperfil");
+                  MostrarAlerta(
+                    "Hecho",
+                    "Se actualizaron sus datos.",
+                    "success"
+                  );
+                  $("#modalUsu").modal("hide");
+                }
+              }
+            },
+          });
+        }
+      });
+    }
+  });
+
+  $("#Fot").click(function () {
+    //Mostrar modal de foto de perfil
+    $("#modalfotop").modal({ backdrop: "static", keyboard: false });
+  });
+
+  $("#FormFotop").on("submit", function (e) {
+    e.preventDefault();
+    opcion = 13;
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Cambiar la foto de su perfil",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Si, Actualizar",
+    }).then((result) => {
+      if (result.isConfirmed) {
         $.ajax({
-            type: 'POST',
-            url: '../../controller/crudusu.php',
-            data: new FormData(this),
-            contentType: false,
-            processData:false,
-            beforeSend: function(){},
-            success: function(msg){
-              alert(msg);
-              MostrarAlerta("Hecho", "Se hizo el cambio de la foto de perfil", "success");
-              $("#idfilep").val('');
-              $("#modalfotop").modal("hide");
-              
-            }
+          type: "POST",
+          url: "../../controller/crudusu.php",
+          data: new FormData(this),
+          contentType: false,
+          processData: false,
+          beforeSend: function () {},
+          success: function (msg) {
+            alert(msg);
+            MostrarAlerta(
+              "Hecho",
+              "Se hizo el cambio de la foto de perfil",
+              "success"
+            );
+            $("#idfilep").val("");
+            $("#modalfotop").modal("hide");
+          },
         });
-  }
-});
-});
+      }
+    });
+  });
   /*=============================   CRUD DE TABLA ÁREAS  ================================= */
 
   //submit para el Alta y Actualización
@@ -1203,13 +1341,12 @@ $("#FormFotop").on('submit', function(e){
       success: function (response) {
         data = $.parseJSON(response);
         if (data.length > 0) {
-          
           $("#editara").show();
           $("#guardara").hide();
           $("#idid").val(data[0]["ID"]);
           $("#icod").val(data[0]["cod_area"]);
           $("#iarea").val(data[0]["area"]);
-          
+
           $("#modalarea").modal({ backdrop: "static", keyboard: false });
         }
       },
@@ -1241,7 +1378,13 @@ $("#FormFotop").on('submit', function(e){
             url: "../../controller/crudarea.php",
             type: "POST",
             datatype: "json",
-            data: {id: id,icod: icod,iarea: iarea,insti: insti,opcion: opcion},
+            data: {
+              id: id,
+              icod: icod,
+              iarea: iarea,
+              insti: insti,
+              opcion: opcion,
+            },
             success: function (response) {
               data = $.parseJSON(response);
               if (data == 1) {
@@ -1296,7 +1439,11 @@ $("#FormFotop").on('submit', function(e){
           success: function (response) {
             data = $.parseJSON(response);
             if (data == 1) {
-              MostrarAlerta("Se tiene asociado datos","El registro tiene datos asociado por lo que no se puede eliminar","error");
+              MostrarAlerta(
+                "Se tiene asociado datos",
+                "El registro tiene datos asociado por lo que no se puede eliminar",
+                "error"
+              );
             } else {
               MostrarAlerta("Hecho", "Se eliminó el registro", "success");
               tablaAreas.row(fila.parents("tr")).remove().draw();
@@ -1307,25 +1454,30 @@ $("#FormFotop").on('submit', function(e){
     });
   });
   /*=============================   CRUD DE TABLA EMPLEADOS  ================================= */
-  $('#NuevoEmpleado').click(function(){
-    ResetForm('FormEmpleado');
+  $("#NuevoEmpleado").click(function () {
+    ResetForm("FormEmpleado");
     $("#EditarE").hide();
     $("#GuardarE").show();
-    $("#UsuE").val('-1');
+    $("#UsuE").val("-1");
     $("#usuar").show();
     $("#modalEmpleado").modal({ backdrop: "static", keyboard: false });
   });
 
-  $('#GuardarE').click(function(){
+  $("#GuardarE").click(function () {
     opcion = 1;
     cbo = $("#UsuE").val();
     idper = $("#idper").val();
     codigo = $("#codU").val();
     area = $("#areaE").val();
     dni = $("#dniU").val();
-    if(idper.length == 0 || codigo.length == 0 || area.length == 0 || $("#UsuE").val() == -1){
-      alert('Porfavor Complete todos los campos Necesarios');
-    }else{
+    if (
+      idper.length == 0 ||
+      codigo.length == 0 ||
+      area.length == 0 ||
+      $("#UsuE").val() == -1
+    ) {
+      alert("Porfavor Complete todos los campos Necesarios");
+    } else {
       Swal.fire({
         title: "¿Estás seguro?",
         text: "Se registrará un nuevo empleado",
@@ -1341,17 +1493,28 @@ $("#FormFotop").on('submit', function(e){
             url: "../../controller/crudempleado.php",
             type: "POST",
             datatype: "json",
-            data: {idper,idper,codigo:codigo,opcion: opcion,area:area,dni:dni},
+            data: {
+              idper,
+              idper,
+              codigo: codigo,
+              opcion: opcion,
+              area: area,
+              dni: dni,
+            },
             success: function (response) {
               data = $.parseJSON(response);
               if (data == 1) {
-                MostrarAlerta('Error','Ya existe el código ingresado','error');
-              }else{
+                MostrarAlerta(
+                  "Error",
+                  "Ya existe el código ingresado",
+                  "error"
+                );
+              } else {
                 tablaEmpleados.ajax.reload(null, false);
-                MostrarAlerta('Éxito','El empleado fue registrado','success');
-                ResetForm('FormEmpleado');
-                $('#modalEmpleado').modal('hide');
-                $("#UsuE option[value='"+cbo+"']").remove();
+                MostrarAlerta("Éxito", "El empleado fue registrado", "success");
+                ResetForm("FormEmpleado");
+                $("#modalEmpleado").modal("hide");
+                $("#UsuE option[value='" + cbo + "']").remove();
               }
             },
           });
@@ -1360,8 +1523,8 @@ $("#FormFotop").on('submit', function(e){
     }
   });
 
-  $('#SalirE').click(function(){
-    ResetForm('FormEmpleado');
+  $("#SalirE").click(function () {
+    ResetForm("FormEmpleado");
   });
 
   $("#UsuE").change(function () {
@@ -1371,7 +1534,7 @@ $("#FormFotop").on('submit', function(e){
       url: "../../controller/crudempleado.php",
       type: "POST",
       datatype: "json",
-      data: {idper,idper,opcion: opcion},
+      data: { idper, idper, opcion: opcion },
       success: function (response) {
         data = $.parseJSON(response);
         if (data.length > 0) {
@@ -1402,7 +1565,7 @@ $("#FormFotop").on('submit', function(e){
           $("#EditarE").show();
           $("#GuardarE").hide();
           $("#usuar").hide();
-          
+
           $("#idper").val(data[0]["ID"]);
           $("#dniU").val(data[0]["dni"]);
           $("#nomU").val(data[0]["nombres"]);
@@ -1419,13 +1582,13 @@ $("#FormFotop").on('submit', function(e){
     });
   });
 
-  $('#EditarE').click(function(){
+  $("#EditarE").click(function () {
     opcion = 2;
     codigo = $("#codU").val();
     area = $("#areaE").val();
-    if(codigo.length == 0 || area.length == 0){
-      alert('Porfavor Complete todos los campos Necesarios');
-    }else{
+    if (codigo.length == 0 || area.length == 0) {
+      alert("Porfavor Complete todos los campos Necesarios");
+    } else {
       Swal.fire({
         title: "¿Estás seguro?",
         text: "Se editarán los datos del empleado",
@@ -1441,23 +1604,30 @@ $("#FormFotop").on('submit', function(e){
             url: "../../controller/crudempleado.php",
             type: "POST",
             datatype: "json",
-            data: {id:id,codigo:codigo,opcion: opcion,area:area},
+            data: { id: id, codigo: codigo, opcion: opcion, area: area },
             success: function (data) {
               if (data == 1) {
-                MostrarAlerta('Error','Repeticion de datos, ingrese otros valores','error');
-              }else{
-                if(data == 2){
+                MostrarAlerta(
+                  "Error",
+                  "Repeticion de datos, ingrese otros valores",
+                  "error"
+                );
+              } else {
+                if (data == 2) {
                   tablaEmpleados.ajax.reload(null, false);
-                  MostrarAlerta('Éxito','No se realizaron cambios','success');
-                  ResetForm('FormEmpleado');
-                  $('#modalEmpleado').modal('hide');
-                }else{
+                  MostrarAlerta("Éxito", "No se realizaron cambios", "success");
+                  ResetForm("FormEmpleado");
+                  $("#modalEmpleado").modal("hide");
+                } else {
                   tablaEmpleados.ajax.reload(null, false);
-                  MostrarAlerta('Éxito','Los datos fueron editados','success');
-                  ResetForm('FormEmpleado');
-                  $('#modalEmpleado').modal('hide');
+                  MostrarAlerta(
+                    "Éxito",
+                    "Los datos fueron editados",
+                    "success"
+                  );
+                  ResetForm("FormEmpleado");
+                  $("#modalEmpleado").modal("hide");
                 }
-
               }
             },
           });
@@ -1486,7 +1656,7 @@ $("#FormFotop").on('submit', function(e){
           url: "../../controller/crudempleado.php",
           type: "POST",
           datatype: "json",
-          data: {id:id,opcion: opcion,dni:dni},
+          data: { id: id, opcion: opcion, dni: dni },
           success: function (data) {
             MostrarAlerta("Hecho", "Se eliminó el registro", "success");
             tablaEmpleados.ajax.reload(null, false);
@@ -1640,7 +1810,7 @@ $("#FormFotop").on('submit', function(e){
   //Mostrar datos del documento
 
   $(document).on("click", ".btnMas", function () {
-    opcion = 5; 
+    opcion = 5;
     fila = $(this).closest("tr");
     id = fila.find("td:eq(0)").text(); //capturo el Nro expediente
     $.ajax({
@@ -1671,7 +1841,7 @@ $("#FormFotop").on('submit', function(e){
             "/Sistema_MesaPartes/" + data[0]["archivo"]
           );
 
-          if (ruc == null || ruc == '' || ruc == ' ' || ruc == '  ') {
+          if (ruc == null || ruc == "" || ruc == " " || ruc == "  ") {
             $("#customRadio1").prop("checked", true);
           } else {
             $("#customRadio2").prop("checked", true);
@@ -1731,39 +1901,47 @@ $("#FormFotop").on('submit', function(e){
     dni = $("#dnir").val();
     descrip = $.trim($("#iddescripcion").val().toUpperCase());
     id = $("#exp").val();
-        opcion = 1;
-        Swal.fire({
-          title: "¿Estás seguro?",
-          html: "El trámite será <b> DERIVADO </b> a <b>" + acdes + "</b>",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonC0olor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Cancelar",
-          confirmButtonText: "Derivar",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-              url: "../../controller/cruddocumento.php",
-              type: "POST",
-              datatype: "json",
-              data: {origen: origen,destino: destino,descrip: descrip,id: id,opcion: opcion,nrexpe:nrexpe, dni:dni},
-              success: function (response) {
-                limpiarderivacion();
-                MostrarAlerta("Hecho", "El trámite fue DERIVADO", "success");
-                tablaTRecibidos.ajax.reload(null, false);
-                $("#modalderivar").modal("hide");
-              },
-            });
-          }
+    opcion = 1;
+    Swal.fire({
+      title: "¿Estás seguro?",
+      html: "El trámite será <b> DERIVADO </b> a <b>" + acdes + "</b>",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonC0olor: "#3085d6",
+      cancelButtonColor: "#d33",
+      cancelButtonText: "Cancelar",
+      confirmButtonText: "Derivar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        $.ajax({
+          url: "../../controller/cruddocumento.php",
+          type: "POST",
+          datatype: "json",
+          data: {
+            origen: origen,
+            destino: destino,
+            descrip: descrip,
+            id: id,
+            opcion: opcion,
+            nrexpe: nrexpe,
+            dni: dni,
+          },
+          success: function (response) {
+            limpiarderivacion();
+            MostrarAlerta("Hecho", "El trámite fue DERIVADO", "success");
+            tablaTRecibidos.ajax.reload(null, false);
+            $("#modalderivar").modal("hide");
+          },
         });
+      }
+    });
   });
 
   $("#finalizar").click(function () {
     descrip = $.trim($("#iddescripcion").val().toUpperCase());
     id = $("#exp").val();
     nrexpe = $("#exp1").val();
-    area = $("#idarealogin").val(); 
+    area = $("#idarealogin").val();
     dni = $("#dnir").val();
     opcion = 10;
     Swal.fire({
@@ -1781,7 +1959,14 @@ $("#FormFotop").on('submit', function(e){
           url: "../../controller/cruddocumento.php",
           type: "POST",
           datatype: "json",
-          data: { id: id, opcion: opcion, area:area,descrip: descrip, nrexpe:nrexpe,dni:dni},
+          data: {
+            id: id,
+            opcion: opcion,
+            area: area,
+            descrip: descrip,
+            nrexpe: nrexpe,
+            dni: dni,
+          },
           success: function (response) {
             limpiarderivacion();
             MostrarAlerta("Hecho", "El trámite fue ARCHIVADO", "success");
@@ -1796,10 +1981,10 @@ $("#FormFotop").on('submit', function(e){
   $("#btnAcepta").click(function () {
     opcion = 2;
     id = $("#iddoc1").val();
-    dni = $("#dnir1").val();   
-    nrexpe = $("#iexpediente1").val();    
+    dni = $("#dnir1").val();
+    nrexpe = $("#iexpediente1").val();
     descrip = $.trim($("#des").val().toUpperCase());
-    area = $("#idarealogin").val();       
+    area = $("#idarealogin").val();
     Swal.fire({
       title: "¿Estás seguro?",
       text: "Aceptar el trámite derivado a su Área",
@@ -1809,13 +1994,20 @@ $("#FormFotop").on('submit', function(e){
       cancelButtonColor: "#d33",
       cancelButtonText: "Cancelar",
       confirmButtonText: "Si, Aceptar",
-    }).then((result) => { 
+    }).then((result) => {
       if (result.isConfirmed) {
         $.ajax({
           url: "../../controller/cruddocumento.php",
           type: "POST",
           datatype: "json",
-          data: {id: id, opcion: opcion,descrip:descrip,area:area,nrexpe:nrexpe,dni:dni},
+          data: {
+            id: id,
+            opcion: opcion,
+            descrip: descrip,
+            area: area,
+            nrexpe: nrexpe,
+            dni: dni,
+          },
           success: function (response) {
             data = $.parseJSON(response);
             limpiaraceptacion();
@@ -1837,7 +2029,9 @@ $("#FormFotop").on('submit', function(e){
     dni = $("#dnir1").val();
     idder = $("#idder").val();
 
-    alert(id + " " + origen + " " + descrip + " " + nrexpe + " " + dni + " " + idder);
+    alert(
+      id + " " + origen + " " + descrip + " " + nrexpe + " " + dni + " " + idder
+    );
     Swal.fire({
       title: "¿Estás seguro?",
       text: "Al RECHAZAR el documento no podrá deshacer la acción",
@@ -1883,7 +2077,9 @@ $("#FormFotop").on('submit', function(e){
     dni = $("#iddnii").val();
     año = $("#idtipob").val();
     if (id.length < 6 || dni.length < 8) {
-      alert("Por favor, complete correctamente todos los campos necesarios para la búsqueda");
+      alert(
+        "Por favor, complete correctamente todos los campos necesarios para la búsqueda"
+      );
     } else {
       $.ajax({
         url: "../../controller/cruddocumento.php",
@@ -1903,13 +2099,13 @@ $("#FormFotop").on('submit', function(e){
             $("#celdadatos").text(data[0]["Datos"]);
             $("#celdaruc").text(data[0]["ruc_institu"]);
             $("#celdaenti").text(data[0]["institucion"]);
-            $('#divNoFound').hide();
-            $('#insert').hide();
-            $('#dat').show();
+            $("#divNoFound").hide();
+            $("#insert").hide();
+            $("#dat").show();
             $("#btnhistorial").prop("disabled", false);
-          }else{
-            $('#divNoFound').show();
-            ResetForm('FormBuscar');
+          } else {
+            $("#divNoFound").show();
+            ResetForm("FormBuscar");
             $("#idexpb").focus();
           }
         },
@@ -1918,7 +2114,6 @@ $("#FormFotop").on('submit', function(e){
   });
 
   $("#btnhistorial").click(function () {
-    
     expediente = $.trim($("#idexpb").val());
     dni = $("#iddnii").val();
     año = $("#idtipob").val();
@@ -1931,90 +2126,103 @@ $("#FormFotop").on('submit', function(e){
         $("#linea").append(response);
         $("#linea").show();
         $("#btnhistorial").prop("disabled", true);
-        window.location = '#linea';
+        window.location = "#linea";
       },
     });
   });
 
   $("#btnNew").click(function () {
-    $("#celdaexpe").text('');
-    $("#celdanro").text('');
-    $("#celdatipo").text('');
-    $("#celdasunto").text('');
+    $("#celdaexpe").text("");
+    $("#celdanro").text("");
+    $("#celdatipo").text("");
+    $("#celdasunto").text("");
 
-    $("#celdadni").text('');
-    $("#celdadatos").text('');
-    $("#celdaruc").text('');
-    $("#celdaenti").text('');
-    $('#divNoFound').hide();
-    ResetForm('FormBuscar');
+    $("#celdadni").text("");
+    $("#celdadatos").text("");
+    $("#celdaruc").text("");
+    $("#celdaenti").text("");
+    $("#divNoFound").hide();
+    ResetForm("FormBuscar");
     $("#linea").hide();
-    $('#dat').hide();
-    $('#insert').show();
-    $('#histo').remove();
+    $("#dat").hide();
+    $("#insert").show();
+    $("#histo").remove();
     $("#idexpb").focus();
   });
 
   // VALIDACION DE FORMATO DE CORREO
-  $('#idcorre').keyup(function(){
-    correo=$('#idcorre').val();
-    if(ValidarCorreo(correo) == false){
+  $("#idcorre").keyup(function () {
+    correo = $("#idcorre").val();
+    if (ValidarCorreo(correo) == false) {
       $("#Vcorreo").text("Formato no válido").css("color", "red");
-    }else{
+    } else {
       $("#Vcorreo").text("Formato válido").css("color", "green");
     }
   });
+
   //Mostrar modal general de cambio de contraseña
-  $('#contra').click(function(){
-    $("#modaleditpsw1").modal({ backdrop: "static", keyboard: false });
+  $("#contra").click(function () {
+    $("#modaleditpswG").modal({ backdrop: "static", keyboard: false });
   });
 
   $("#BtnContraG").click(function () {
-      opcion = 9;
-      user_id = $("#iduser").val();
-      ipswa = $("#ipsw").val();
-      ipsw = $("#ipasss1").val();
-      ipswn = $("#ipassco1").val();
-      if (ipswa.length <= 0 || ipsw.length <= 0 || ipswn.length <= 0) {
-        alert("Los campos no deben estar vacios");
-      } else {
-        Swal.fire({
-          title: "¿Estás seguro?",
-          text: "Se hará el cambio de contraseña",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Cancelar",
-          confirmButtonText: "Si, Actualizar",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-              url: "../../controller/crudusu.php",
-              type: "POST",
-              datatype: "json",
-              data: {opcion:opcion,user_id:user_id,ipswa:ipswa,ipswn:ipswn},
-              success: function (response) {
-                data = $.parseJSON(response);
-                alert(data);
-                if (data == 1) {
-
-                    MostrarAlerta("Incorrecto", "La contraseña actual ingresada es incorrecta", "error");
-                } else {
-                  $("#modaleditpsw").modal("hide");
-                  ResetForm("formC");
-                  $("#error3").text("");
-                  MostrarAlerta("Éxito", "Se hizo el cambio de contraseña", "success");
-                }
-              },
-            });
-          }
-        });
-      }
-    });
+    opcion = 9;
+    user_id = $("#iduser").val();
+    ipswa = $("#ipsw").val();
+    ipsw = $("#ipasss1").val();
+    ipswn = $("#ipassco1").val();
+    if (ipswa.length <= 0 || ipsw.length <= 0 || ipswn.length <= 0) {
+      alert("Los campos no deben estar vacios");
+    } else {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Se hará el cambio de contraseña",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, Actualizar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "../../controller/crudusu.php",
+            type: "POST",
+            datatype: "json",
+            data: {
+              opcion: opcion,
+              user_id: user_id,
+              ipswa: ipswa,
+              ipswn: ipswn,
+            },
+            success: function (response) {
+              data = $.parseJSON(response);
+              // alert(data);
+              if (data == 1) {
+                MostrarAlerta(
+                  "Incorrecto",
+                  "La contraseña actual ingresada es incorrecta",
+                  "error"
+                );
+              } else {
+                $("#modaleditpswG").modal("hide");
+                ResetForm("formC");
+                $("#error3").text("");
+                MostrarAlerta(
+                  "Éxito",
+                  "Se hizo el cambio de contraseña",
+                  "success"
+                );
+              }
+            },
+          });
+        }
+      });
+    }
+  });
 
   //ACCIONES PARAR EL MODAL INSTITUCION GENERAL
-  $('#institut').click(function(){
+  $("#institut").click(function () {
     opcion = 1;
     idinsti = $("#idinstitu").val();
     $.ajax({
@@ -2034,54 +2242,64 @@ $("#FormFotop").on('submit', function(e){
       },
     });
   });
-
 
   $("#BtnContraG").click(function () {
-      opcion = 9;
-      user_id = $("#iduser").val();
-      ipswa = $("#ipsw").val();
-      ipsw = $("#ipasss1").val();
-      ipswn = $("#ipassco1").val();
-      if (ipswa.length <= 0 || ipsw.length <= 0 || ipswn.length <= 0) {
-        alert("Los campos no deben estar vacios");
-      } else {
-        Swal.fire({
-          title: "¿Estás seguro?",
-          text: "Se hará el cambio de contraseña",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          cancelButtonText: "Cancelar",
-          confirmButtonText: "Si, Actualizar",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            $.ajax({
-              url: "../../controller/crudusu.php",
-              type: "POST",
-              datatype: "json",
-              data: {opcion:opcion,user_id:user_id,ipswa:ipswa,ipswn:ipswn},
-              success: function (response) {
-                data = $.parseJSON(response);
-                alert(data);
-                if (data == 1) {
+    opcion = 9;
+    user_id = $("#iduser").val();
+    ipswa = $("#ipsw").val();
+    ipsw = $("#ipasss1").val();
+    ipswn = $("#ipassco1").val();
+    if (ipswa.length <= 0 || ipsw.length <= 0 || ipswn.length <= 0) {
+      alert("Los campos no deben estar vacios");
+    } else {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Se hará el cambio de contraseña",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, Actualizar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
+            url: "../../controller/crudusu.php",
+            type: "POST",
+            datatype: "json",
+            data: {
+              opcion: opcion,
+              user_id: user_id,
+              ipswa: ipswa,
+              ipswn: ipswn,
+            },
+            success: function (response) {
+              data = $.parseJSON(response);
+              alert(data);
+              if (data == 1) {
+                MostrarAlerta(
+                  "Incorrecto",
+                  "La contraseña actual ingresada es incorrecta",
+                  "error"
+                );
+              } else {
+                $("#modaleditpsw").modal("hide");
+                ResetForm("formC");
+                $("#error3").text("");
+                MostrarAlerta(
+                  "Éxito",
+                  "Se hizo el cambio de contraseña",
+                  "success"
+                );
+              }
+            },
+          });
+        }
+      });
+    }
+  });
 
-                    MostrarAlerta("Incorrecto", "La contraseña actual ingresada es incorrecta", "error");
-                } else {
-                  $("#modaleditpsw").modal("hide");
-                  ResetForm("formC");
-                  $("#error3").text("");
-                  MostrarAlerta("Éxito", "Se hizo el cambio de contraseña", "success");
-                }
-              },
-            });
-          }
-        });
-      }
-    });
-
-    
-  $('#institut').click(function(){
+  $("#institut").click(function () {
     opcion = 1;
     idinsti = $("#idinstitu").val();
     $.ajax({
@@ -2101,7 +2319,7 @@ $("#FormFotop").on('submit', function(e){
       },
     });
   });
-  $('#BtnEditInsti').click(function(){
+  $("#BtnEditInsti").click(function () {
     opcion = 2;
     idinsti = $("#idinst").val();
     rucinsti = $("#iruci").val();
@@ -2122,13 +2340,19 @@ $("#FormFotop").on('submit', function(e){
           url: "../../controller/institucion.php",
           type: "POST",
           datatype: "json",
-          data: {opcion:opcion,idinsti:idinsti,rucinsti:rucinsti,razon:razon,direc:direc},
+          data: {
+            opcion: opcion,
+            idinsti: idinsti,
+            rucinsti: rucinsti,
+            razon: razon,
+            direc: direc,
+          },
           success: function (response) {
             data = $.parseJSON(response);
             if (data == 1) {
               MostrarAlerta("Hecho", "Usted no hizo cambios", "success");
               $("#modalinstitu").modal("hide");
-            }else{
+            } else {
               MostrarAlerta("Hecho", "Los cambios se guardaron", "success");
               $("#modalinstitu").modal("hide");
             }
@@ -2136,7 +2360,6 @@ $("#FormFotop").on('submit', function(e){
         });
       }
     });
-
   });
   //VALIDACION DE INGRESO DE CONTRASEÑAS
   $("#ipassco").keyup(function () {
@@ -2201,55 +2424,56 @@ $("#FormFotop").on('submit', function(e){
       $("#guardar").prop("disabled", true);
     }
   });
-// VALIDACION DEL DNI INGRESADO EN MESA DE PARTES
+  // VALIDACION DEL DNI INGRESADO EN MESA DE PARTES
   $("#validar").click(function () {
     opcion = 11;
     var idni = $("#iddni").val();
-    if(idni.length < 8){
-      alert('El DNI debe tener 8 digitos');
+    if (idni.length < 8) {
+      alert("El DNI debe tener 8 digitos");
       $("#iddni").focus();
-    }else{
+    } else {
       $.ajax({
-      url: "../../controller/crudusu.php",
-      type: "POST",
-      datatype: "json",
-      data: { idni: idni, opcion: opcion },
-      success: function (response) {
-        data = $.parseJSON(response);
-        if(data.length < 1){
-          Swal.fire({
-            position: 'top-end',
-            icon: 'warning',
-            title: 'No se encuentra registrado. Complete correctamente los campos.',
-            showConfirmButton: false,
-            timer: 1800,
-            // height: '850px'
-          })
-        }else{
-          $("#idpersona").val(data[0]["idpersona"]);
-          $("#idnombre").val(data[0]["nombres"]);
-          $("#idap").val(data[0]["ap_materno"]);
-          $("#idam").val(data[0]["ap_paterno"]);
-          $("#idcel").val(data[0]["telefono"]);
-          $("#iddirec").val(data[0]["direccion"]);
-          $("#idcorre").val(data[0]["email"]);
-
-          $("#idruc").val(data[0]["ruc_institu"]);
-          $("#identi").val(data[0]["institucion"]);
-
-          ruc = data[0]["ruc_institu"];
-
-          if (ruc == null || ruc == '' || ruc == ' ' || ruc == '  ') {
-            $("#customRadio1").prop("checked", true);
-            $('#mostrar').hide();
+        url: "../../controller/crudusu.php",
+        type: "POST",
+        datatype: "json",
+        data: { idni: idni, opcion: opcion },
+        success: function (response) {
+          data = $.parseJSON(response);
+          if (data.length < 1) {
+            Swal.fire({
+              position: "top-end",
+              icon: "warning",
+              title:
+                "No se encuentra registrado. Complete correctamente los campos.",
+              showConfirmButton: false,
+              timer: 1800,
+              // height: '850px'
+            });
           } else {
-            $("#customRadio2").prop("checked", true);
-            $('#mostrar').show();
+            $("#idpersona").val(data[0]["idpersona"]);
+            $("#idnombre").val(data[0]["nombres"]);
+            $("#idap").val(data[0]["ap_materno"]);
+            $("#idam").val(data[0]["ap_paterno"]);
+            $("#idcel").val(data[0]["telefono"]);
+            $("#iddirec").val(data[0]["direccion"]);
+            $("#idcorre").val(data[0]["email"]);
+
+            $("#idruc").val(data[0]["ruc_institu"]);
+            $("#identi").val(data[0]["institucion"]);
+
+            ruc = data[0]["ruc_institu"];
+
+            if (ruc == null || ruc == "" || ruc == " " || ruc == "  ") {
+              $("#customRadio1").prop("checked", true);
+              $("#mostrar").hide();
+            } else {
+              $("#customRadio2").prop("checked", true);
+              $("#mostrar").show();
+            }
           }
-        }
-      },
-    });
-  }
+        },
+      });
+    }
   });
 
   $("#btnReport").click(function () {
@@ -2261,47 +2485,57 @@ $("#FormFotop").on('submit', function(e){
     tipo = $("#cboreport1").val();
     d = convertirfecha(desde);
     h = convertirfecha(hasta);
-    alert(d+' '+h)
-    if(tipo == "0"){
-      alert('POR FAVOR SELECCIONE LA FORMA DEL REPORTE');
+    alert(d + " " + h);
+    if (tipo == "0") {
+      alert("POR FAVOR SELECCIONE LA FORMA DEL REPORTE");
       $("#cboreport1").focus();
-    }
-    else{
-      if(tipo == "3" && (desde="" || hasta == "")){
-        alert('POR FAVOR COMPLETE LOS CAMPOS REQUERIDOS');
+    } else {
+      if (tipo == "3" && (desde = "" || hasta == "")) {
+        alert("POR FAVOR COMPLETE LOS CAMPOS REQUERIDOS");
         $("#start").focus();
-      }else{
-          window.open('/Sistema_MesaPartes/reporte/reporte-documentos.php?e='+estado+'&a='+año+'&m='+mes+'&d='+d+'&h='+h, '_blank');
+      } else {
+        window.open(
+          "/Sistema_MesaPartes/reporte/reporte-documentos.php?e=" +
+            estado +
+            "&a=" +
+            año +
+            "&m=" +
+            mes +
+            "&d=" +
+            d +
+            "&h=" +
+            h,
+          "_blank"
+        );
       }
-    } 
+    }
   });
 
   $("#cboreport1").change(function () {
     var sel = $(this).val();
-    ResetForm('formreport');
-    switch(sel){
-      case '1':
-        $('#re').show();
-        $('#reportmes').hide();
-        $('#reportrango').hide()
+    ResetForm("formreport");
+    switch (sel) {
+      case "1":
+        $("#re").show();
+        $("#reportmes").hide();
+        $("#reportrango").hide();
 
         break;
-      case '2':
-        $('#re').show();
-        $('#reportmes').show();
-        $('#reportrango').hide()
+      case "2":
+        $("#re").show();
+        $("#reportmes").show();
+        $("#reportrango").hide();
         break;
-      case '3':
-        $('#re').hide();
-        $('#reportmes').hide();
-        $('#reportrango').show()
-        break
+      case "3":
+        $("#re").hide();
+        $("#reportmes").hide();
+        $("#reportrango").show();
+        break;
       default:
-        alert('ERROR AL ELEGIR')
+        alert("ERROR AL ELEGIR");
         break;
     }
   });
-  
 });
 /*=============================   FUNCIONES  ================================= */
 
@@ -2312,11 +2546,7 @@ function validaNumericos(event) {
   return false;
 }
 function MostrarAlerta(mensaje, descripcion, tipoalerta) {
-  Swal.fire(
-    mensaje, 
-    descripcion, 
-    tipoalerta
-    );
+  Swal.fire(mensaje, descripcion, tipoalerta);
 }
 function limpiarcampos() {
   document.getElementById("formnew").reset();
@@ -2345,90 +2575,86 @@ function ResetForm(id) {
   document.getElementById(id).reset();
 }
 
+function RegistroDocumento() {
+  var isChecked = document.getElementById("check").checked;
+  if (isChecked) {
+    if (ValidarPDF()) {
+      Swal.fire({
+        title: "¿Estás seguro?",
+        text: "Se registrará su trámite",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Enviar",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          var parametros = new FormData($("#formulario-tramite")[0]);
 
-
-function RegistroDocumento(){
-  var isChecked = document.getElementById('check').checked;
-  if(isChecked){
-      if(ValidarPDF()){
-        Swal.fire({
-          title: '¿Estás seguro?',
-          text: "Se registrará su trámite",
-          icon: 'warning',
-          showCancelButton: true,
-          confirmButtonColor: '#3085d6',
-          cancelButtonColor: '#d33',
-          cancelButtonText: 'Cancelar',
-          confirmButtonText: 'Enviar'
-        }).then((result) => {
-          if (result.isConfirmed) {
-            
-            var parametros = new FormData($('#formulario-tramite')[0]);
-
-              $.ajax ({
-                data: parametros,
-                url: '../../controller/savetramite.php',
-                type:'POST',
-                contentType: false,
-                processData: false,
-                beforesend: function(){ },
-                success:  function(response){
-                  Swal.fire({ 
-                    icon: 'success',
-                    title: 'TRÁMITE REGISTRADO',
-                    html: '<div style="text-align:left">'+response+'</div>'
-                  })
-                  Limpiar();
-                  $('#Avisoa').hide();
-                }
-              })		          
-          }
-       }) 
-        return false;
-      }else{
-        Swal.fire({ 
-          icon: 'error',
-          title: 'Solo se permite archivos tipo PDF',
-          html: 'El archivo no es de tipo pdf',
-        })
-        return false;
-      }
-    }else{
-      alert('Por favor complete todos los campos requeridos');
-    } 
+          $.ajax({
+            data: parametros,
+            url: "../../controller/savetramite.php",
+            type: "POST",
+            contentType: false,
+            processData: false,
+            beforesend: function () {},
+            success: function (response) {
+              Swal.fire({
+                icon: "success",
+                title: "TRÁMITE REGISTRADO",
+                html: '<div style="text-align:left">' + response + "</div>",
+              });
+              Limpiar();
+              $("#Avisoa").hide();
+            },
+          });
+        }
+      });
+      return false;
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Solo se permite archivos tipo PDF",
+        html: "El archivo no es de tipo pdf",
+      });
+      return false;
+    }
+  } else {
+    alert("Por favor complete todos los campos requeridos");
+  }
 }
 
-function ValidarPDF(){
+function ValidarPDF() {
   var archivo = document.getElementById("idfile").value;
   var extensiones = archivo.substring(archivo.lastIndexOf("."));
-  if(extensiones != ".pdf"){
+  if (extensiones != ".pdf") {
     return false;
-  }else{
+  } else {
     return true;
   }
 }
 
-function Limpiar(){
+function Limpiar() {
   document.getElementById("formulario-tramite").reset();
-  document.querySelector('#alias').innerText="";
-  document.getElementById('idtipo').selectedIndex = 0;
-  
+  document.querySelector("#alias").innerText = "";
+  document.getElementById("idtipo").selectedIndex = 0;
 }
 
-function convertirfecha(fecha){
-  if(typeof fecha != 'string'){
-      return false;
-  }else{
-    if(fecha == ''){
-      return '';
-    }else{
-      let partes = fecha.split('/');  
-      return partes[2] + '-' + partes[1] + '-' + partes[0];
+function convertirfecha(fecha) {
+  if (typeof fecha != "string") {
+    return false;
+  } else {
+    if (fecha == "") {
+      return "";
+    } else {
+      let partes = fecha.split("/");
+      return partes[2] + "-" + partes[1] + "-" + partes[0];
     }
   }
 }
 
-const input = document.getElementById('icupo');
+const input = document.getElementById("icupo");
 
 const check = () => {
   if (!input.validity.valid) input.value = 1;

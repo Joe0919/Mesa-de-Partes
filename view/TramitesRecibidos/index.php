@@ -27,7 +27,7 @@ $area_actual = $resultado['area'];
 
 $area=mysqli_query($conexion,"select ae.idareainstitu ID, cod_area, area from institucion i, area a, areainstitu ae where ae.idinstitucion=i.idinstitucion and ae.idarea=a.idarea and area!='$area_actual'");
 
-$consulta1=mysqli_query($conexion,"select date_format();");
+// $consulta1=mysqli_query($conexion,"select date_format();");
 $resultado1 = mysqli_fetch_assoc($consulta);
 ?>
 
@@ -847,7 +847,7 @@ $resultado1 = mysqli_fetch_assoc($consulta);
                       <thead style="background: #045EB5;color:white;">
                       <tr style="text-align: center;">
                         <th rowspan="2">Expediente</th>
-                        <th rowspan="2">Nro Doc.</th>
+                        <th rowspan="2">Fecha Registro</th>
                         <th rowspan="2">Tipo Doc</th>  
                         <th colspan="2">Remitente</th>
                         <th colspan="2">Localización</th>

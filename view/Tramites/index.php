@@ -27,7 +27,7 @@ $area_actual = $resultado['area'];
 
 $area=mysqli_query($conexion,"select a.idarea ID, cod_area, area from institucion i, area a, areainstitu ae where ae.idinstitucion=i.idinstitucion and ae.idarea=a.idarea and area!='$area_actual'");
 
-$consulta1=mysqli_query($conexion,"select date_format();");
+// $consulta1=mysqli_query($conexion,"select date_format();");
 $resultado1 = mysqli_fetch_assoc($consulta);
 
 

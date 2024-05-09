@@ -20,17 +20,23 @@ $folios=trim($_POST['idfolios']);
 $asunto=strtoupper(trim($_POST['idasunto']));
 
 
-
 $xped = mysqli_query($conexion,"SELECT gen_nroexpediente() res");
 $fila = mysqli_fetch_assoc($xped);
 $expediente = $fila['res'];
 
 $a = "../";
-$ruta = "files/docs/";    	
+$ruta = "files/docs/";    	  
+
+$ruta_aux = $a . $ruta ;
 
 $file_tmp_name = $_FILES['idfile']['tmp_name'];
 $new_name_file = $a . $ruta . $expediente . '_' . date('Y') . '_'. $dni . '.pdf';
 $nuevo = $ruta . $expediente . '_' . date('Y') . '_'. $dni . '.pdf';
+
+if (!file_exists($ruta_aux)) {
+    mkdir($ruta_aux);
+}
+
 
 if (move_uploaded_file($file_tmp_name, $new_name_file)) {
     $existe = mysqli_query($conexion,"SELECT count(*) total FROM persona where dni='$dni'");
@@ -62,7 +68,6 @@ if (move_uploaded_file($file_tmp_name, $new_name_file)) {
         $last = mysqli_insert_id($conexion);
 
         
-
 
         $consul= mysqli_query($conexion,"select nro_expediente expediente, nro_doc nro, tipodoc, concat(nombres, ' ',ap_paterno,' ',ap_materno) Datos, date_format(fechad, '%d/%m/%Y') Fecha
         from derivacion d, documento dc, areainstitu a, area ae, persona p, tipodoc t where d.iddocumento=dc.iddocumento and
