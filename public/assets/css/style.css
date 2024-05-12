@@ -1,3 +1,149 @@
-.btn-general{
-    cursor: pointer;
+:root {
+  --main-color: #2874a6;
+  --color1: #084b8a;
+  --color2: white;
+  --color3: #1f618d;
+}
+
+.btn1 {
+  height: 40px;
+  width: 140px;
+}
+.btn-a {
+  float: right;
+  width: 220px;
+  height: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+.btn-a1 {
+  width: 20px;
+  height: 30px;
+}
+
+.modal-header-primary {
+  color: #fff;
+  padding: 9px 15px;
+  border-bottom: 1px solid #eee;
+  background-color: #055fb5;
+  -webkit-border-top-left-radius: 4px;
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.modal-body-center {
+  text-align: center;
+}
+
+.modal-body-title {
+  font-family: arial;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.modal-photo {
+  width: 150px;
+  height: 150px;
+}
+
+.modal-title-weight {
+  font-weight: 600;
+}
+.modal-title-h4 {
+  font-weight: 600;
+  color: var(--color1);
+}
+
+.b-modal-info {
+  color: #8c0505;
+  font-size: 1.4rem;
+}
+
+.btn-general {
+  cursor: pointer;
+}
+
+.span-red {
+  color: red;
+  font-weight: 600;
+}
+
+.nav-text-h3 {
+  margin: 8px 0 0 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.select-reporte {
+  width: 300px;
+  height: 45px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 18px;
+}
+.img-logo {
+  opacity: 0.8;
+}
+
+.font-name {
+  font-size: 20px;
+}
+.span-logo {
+  font-weight: 600;
+  font-size: 1.4rem;
+}
+.title-content-h1 {
+  text-align: center;
+  color: black;
+  font-weight: 600;
+}
+.title-content-h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.info-box-text1 {
+  font-weight: 600;
+}
+
+.font-w-600 {
+  font-weight: 600;
+}
+
+.card-header-title {
+  color: var(--color1);
+}
+
+.info-box-title {
+  font-size: 20px;
+}
+.info-box-count {
+  font-size: 40px;
+}
+.info-box-desc {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.table-data {
+  width: 100%;
+}
+.table-data thead,
+.table-data tfoot {
+  background: var(--main-color);
+  color: var(--color2);
+}
+.table-data thead tr,
+.table-data tbody,
+.table-data tfoot tr {
+  text-align: center;
+}
+.table-data thead tr .th-photo,
+.table-data tfoot tr .th-photo {
+  width: 10px;
 }

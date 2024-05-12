@@ -22,25 +22,25 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
 
 ?>
 
+<!--  ***IMPORTANTE*** CORREGIR EL INGRESO DE FILTROS-->
+
 <!-- Modal Generaci√≥n de Reportes -->
 <div class="modal fade" id="ModalInformes">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h4 style="font-weight:600" class="modal-title">GENERADOR DE INFORME DOCUMENTARIO:</h4>
-        &nbsp;<b id="idc" style="color:#8C0505;font-size: 1.4rem;"></b>
+        <h4 class="modal-title modal-title-weight ">GENERADOR DE INFORME DOCUMENTARIO:</h4>
+        <b id="idc" class="b-modal-info"></b>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">√ó</span>
         </button>
       </div>
       <div class="modal-body">
-
-
         <div class="row">
           <div class="col-sm-6">
             <div align="center">
               <label>Estado del Documento: </label>
-              <select class="form-control" style="width:300px;height:45px;font-weight:600;text-align:center;font-size:18px" name="cbovista" id="cboreport">
+              <select class="form-control select-reporte" name="cbovista" id="cboreport">
                 <option value="0">TODOS</option>
                 <option value="PENDIENTE">PENDIENTES</option>
                 <option value="ACEPTADO">ACEPTADOS</option>
@@ -52,7 +52,7 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
           <div class="col-sm-6">
             <div align="center">
               <label>Forma del Reporte: </label>
-              <select class="form-control" style="width:300px;height:45px;font-weight:600;text-align:center;font-size:18px;" name="cboreport1" id="cboreport1">
+              <select class="form-control select-reporte" name="cboreport1" id="cboreport1">
                 <option value=0>Seleccione</option>
                 <option value=1>POR A√ëO</option>
                 <option value=2>POR MES Y A√ëO</option>
@@ -68,7 +68,7 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
             <div class="col-sm-6">
               <div align="center" id="reporta√±o">
                 <label>A√ëO: </label>
-                <select class="form-control" style="width:300px;height:45px;font-weight:600;text-align:center;font-size:18px" name="cboa√±o" id="cboa√±o">
+                <select class="form-control select-reporte" name="cboa√±o" id="cboa√±o">
                   <?php while ($datos = mysqli_fetch_array($consulta)) { ?>
                     <option value="<?php echo $datos['a√±o'] ?>"> <?php echo $datos['a√±o'] ?></option>
                   <?php } ?>
@@ -78,7 +78,7 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
             <div class="col-sm-6">
               <div align="center" id="reportmes">
                 <label>MES: </label>
-                <select class="form-control" style="width:300px;height:45px;font-weight:600;text-align:center;font-size:18px;" name="cbormes" id="cbormes">
+                <select class="form-control select-reporte" name="cbormes" id="cbormes">
                   <option value="">Seleccione</option>
                   <option value="01">ENERO</option>
                   <option value="02">FEBRERO</option>
@@ -114,8 +114,8 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
 
       </div>
       <div class="modal-footer justify-content-between">
-        <button style="height:40px;width:120px" type="button" class="btn btn-danger" data-dismiss="modal">Cerrar </button>
-        <button style="height:40px;width:180px" type="button" class="btn btn-primary" id="btnReport">Generar Reporte</button>
+        <button type="button" class="btn btn1 btn-danger" data-dismiss="modal">Cerrar </button>
+        <button type="button" class="btn btn1 btn-primary" id="btnReport">Generar Reporte</button>
       </div>
     </div>
   </div>
@@ -124,18 +124,15 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
 
 <!-- INICIO DEL CONTENIDO PRINCIPAL-->
 
-<!-- Main Sidebar Container -->
+<!-- ACORDE√ìN DEL PANEL DE ADMINISTRACI√ìNL-->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a class="brand-link navbar-lightblue">
-    <img src="/Sistema_MesaPartes/<?php echo $row['logo'] ?>" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text" style="font-weight:600;font-size:1.4rem;">HACDP</span>
+    <img src="../../<?php echo $row['logo'] ?>" alt="Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <span class="brand-text span-logo">HACDP</span>
   </a>
-
   <!-- Sidebar -->
   <div class="sidebar">
-
-
     <!-- Sidebar Menu -->
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -229,17 +226,17 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
 
   </div>
 </aside>
+
 <div class="content-wrapper">
   <div class="content-header">
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-11">
-          <h1 style="text-align:center;color:black;font-weight:600;">SISTEMA DE MESA DE PARTES VIRTUAL</h1>
+          <h1 class="title-content-h1">SISTEMA DE MESA DE PARTES VIRTUAL</h1>
         </div>
         <div class="col-sm-1">
-
           <ol class="breadcrumb float-sm-right">
-            <li style="font-weight:600"><i class="nav-icon fas fa-home"></i>&nbsp;Inicio</li>
+            <li class="modal-title-weight"><i class="nav-icon fas fa-home"></i>&nbsp;Inicio</li>
           </ol>
         </div>
       </div>
@@ -254,37 +251,37 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
           <?php if ($area['area'] == "ADMIN SISTEMA") { ?>
             <div class="card card-outline card-info">
               <div class="card-header">
-                <h3 style="font-size: 1.2rem;font-weight: 500;">
+                <h3 class="title-content-h3">
                   <i class="ion ion-md-folder-open mr-1"></i>&nbsp;<b>INFORMACI√ìN DOCUMENTARIA GENERAL:<b>
                 </h3>
                 <div class="row">
                   <div class="col-md-4 col-sm-6 col-12">
                     <div class="info-box bg-danger">
-                      <span class="info-box-icon bg-danger"><img src="/Sistema_MesaPartes/public/assets/img/rechazado.png"></span>
+                      <span class="info-box-icon bg-danger"><img src="../../public/assets/img/rechazado.png"></span>
                       <div class="info-box-content">
-                        <span style="font-weight:600;font-size:20px;" class="info-box-text">RECHAZADOS</span>
-                        <span style="font-weight:600;font-size:40px;"><?php echo $fila1['total'] ?></span>
-                        <span style="font-weight:500;font-size:18px;" class="progress-description">Total de Documentos</span>
+                        <span class="info-box-text info-box-text1 info-box-title">RECHAZADOS</span>
+                        <span class="info-box-text1 info-box-count"><?php echo $fila1['total'] ?></span>
+                        <span class="progress-description info-box-desc">Total de Documentos</span>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-6 col-12">
                     <div class="info-box bg-primary">
-                      <span class="info-box-icon bg-primary"><img src="/Sistema_MesaPartes/public/assets/img/pendiente.png"></span>
+                      <span class="info-box-icon bg-primary"><img src="../../public/assets/img/pendiente.png"></span>
                       <div class="info-box-content">
-                        <span style="font-weight:600;font-size:20px;" class="info-box-text">PENDIENTES</span>
-                        <span style="font-weight:600;font-size:40px;"><?php echo $fila['total'] ?></span>
-                        <span style="font-weight:500;font-size:18px;" class="progress-description">Total de Documentos</span>
+                        <span class="info-box-text info-box-text1 info-box-title">PENDIENTES</span>
+                        <span class="info-box-text1 info-box-count"><?php echo $fila['total'] ?></span>
+                        <span class="progress-description info-box-desc">Total de Documentos</span>
                       </div>
                     </div>
                   </div>
                   <div class="col-md-4 col-sm-6 col-12">
                     <div class="info-box bg-green">
-                      <span class="info-box-icon bg-green"><img src="/Sistema_MesaPartes/public/assets/img/documentos.png"></span>
+                      <span class="info-box-icon bg-green"><img src="../../public/assets/img/documentos.png"></span>
                       <div class="info-box-content">
-                        <span style="font-weight:600;font-size:20px;" class="info-box-text">ACEPTADOS</span>
-                        <span style="font-weight:600;font-size:40px;"><?php echo $fila2['total'] ?></span>
-                        <span style="font-weight:500;font-size:18px;" class="progress-description">Total de Documentos</span>
+                        <span class="info-box-text info-box-text1 info-box-title">ACEPTADOS</span>
+                        <span class="info-box-text1 info-box-count"><?php echo $fila2['total'] ?></span>
+                        <span class="progress-description info-box-desc">Total de Documentos</span>
                       </div>
                     </div>
                   </div>
@@ -295,37 +292,37 @@ $consulta = mysqli_query($conexion, "SELECT distinct date_format(fechad,'%Y') a√
 
           <div class="card card-outline card-fuchsia">
             <div class="card-header">
-              <h3 style="font-size: 1.2rem;font-weight: 500;">
+              <h3 class="title-content-h3">
                 <i class="ion ion-md-folder-open mr-1"></i>&nbsp;<b>RESUMEN DE TR√ÅMITES DEL √ÅREA:<b>
               </h3>
               <div class="row">
                 <div class="col-md-4 col-sm-6 col-12">
                   <div class="info-box bg-danger">
-                    <span class="info-box-icon bg-danger"><img src="/Sistema_MesaPartes/public/assets/img/rechazado.png"></span>
+                    <span class="info-box-icon bg-danger"><img src="../../public/assets/img/rechazado.png"></span>
                     <div class="info-box-content">
-                      <span style="font-weight:600;font-size:20px;" class="info-box-text">RECHAZADOS</span>
-                      <span style="font-weight:600;font-size:40px;"><b id="cantR"><?php echo $filaR['total']; ?></b></span>
-                      <span style="font-weight:500;font-size:18px;" class="progress-description">Total de Documentos</span>
+                      <span class="info-box-text info-box-text1 info-box-title">RECHAZADOS</span>
+                      <span class="info-box-text1 info-box-count"><b id="cantR"><?php echo $filaR['total']; ?></b></span>
+                      <span class="progress-description info-box-desc">Total de Documentos</span>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-12">
                   <div class="info-box bg-primary">
-                    <span class="info-box-icon bg-primary"><img src="/Sistema_MesaPartes/public/assets/img/pendiente.png"></span>
+                    <span class="info-box-icon bg-primary"><img src="../../public/assets/img/pendiente.png"></span>
                     <div class="info-box-content">
-                      <span style="font-weight:600;font-size:20px;" class="info-box-text">PENDIENTES</span>
-                      <span style="font-weight:600;font-size:40px;"><b id="cantP"><?php echo $filaP['total']; ?></b></span>
-                      <span style="font-weight:500;font-size:18px;" class="progress-description">Total de Documentos</span>
+                      <span class="info-box-text info-box-text1 info-box-title">PENDIENTES</span>
+                      <span class="info-box-text1 info-box-count"><b id="cantP"><?php echo $filaP['total']; ?></b></span>
+                      <span class="progress-description info-box-desc">Total de Documentos</span>
                     </div>
                   </div>
                 </div>
                 <div class="col-md-4 col-sm-6 col-12">
                   <div class="info-box bg-green">
-                    <span class="info-box-icon bg-green"><img src="/Sistema_MesaPartes/public/assets/img/documentos.png"></span>
+                    <span class="info-box-icon bg-green"><img src="../../public/assets/img/documentos.png"></span>
                     <div class="info-box-content">
-                      <span style="font-weight:600;font-size:20px;" class="info-box-text">ACEPTADOS</span>
-                      <span style="font-weight:600;font-size:40px;"><b id="cantA"><?php echo $filaA['total']; ?></b></span>
-                      <span style="font-weight:500;font-size:18px;" class="progress-description">Total de Documentos</span>
+                      <span class="info-box-text info-box-text1 info-box-title">ACEPTADOS</span>
+                      <span class="info-box-text1 info-box-count"><b id="cantA"><?php echo $filaA['total']; ?></b></span>
+                      <span class="progress-description info-box-desc">Total de Documentos</span>
                     </div>
                   </div>
                 </div>

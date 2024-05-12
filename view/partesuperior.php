@@ -24,39 +24,30 @@ $res = mysqli_fetch_assoc($consulta);
 $ida = $res['Ida'];
 ?>
 
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sistema de Hospital</title>
+  <title>Mesa de Partes Virtual</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="/Sistema_MesaPartes/public/assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="../../public/assets/plugins/fontawesome-free/css/all.min.css">
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-  <link rel="stylesheet" href="/Sistema_MesaPartes/public/assets/dist/css/adminlte.min.css">
-  <link rel="icon shortcut" href="/Sistema_MesaPartes/public/assets/img/logo.png">
-  <link rel="stylesheet" href="/Sistema_MesaPartes/public/assets/fonts/ionicons.css">
-  <link rel="stylesheet" href="/Sistema_MesaPartes/public/assets/fonts/feather.css">
-  <link rel="stylesheet" href="/Sistema_MesaPartes/public/assets/plugins/datepicker/css/bootstrap-datepicker3.min.css">
-  <link rel="stylesheet" href="/Sistema_MesaPartes/public/assets/css/style.css">
+  <link rel="stylesheet" href="../../public/assets/dist/css/adminlte.min.css">
+  <link rel="icon shortcut" href="../../public/assets/img/logo.png">
+  <link rel="stylesheet" href="../../public/assets/fonts/ionicons.css">
+  <link rel="stylesheet" href="../../public/assets/fonts/feather.css">
+  <link rel="stylesheet" href="../../public/assets/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <!-- <link rel="stylesheet"  href="../../public/assets/plugins/jquery-ui/jquery-ui.min.css"> -->
+  <link rel="stylesheet" href="../../public/assets/plugins/datepicker/css/bootstrap-datepicker3.min.css">
+  <link rel="stylesheet" href="../../public/assets/css/style.css">
+
 
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <style>
-    .modal-header-primary {
-      color: #fff;
-      padding: 9px 15px;
-      border-bottom: 1px solid #eee;
-      background-color: #055FB5;
-      -webkit-border-top-left-radius: 4px;
-      -webkit-border-top-right-radius: 4px;
-      -moz-border-radius-topleft: 4px;
-      -moz-border-radius-topright: 4px;
-      border-top-left-radius: 4px;
-      border-top-right-radius: 4px;
-    }
-  </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -75,8 +66,8 @@ $ida = $res['Ida'];
           <p>¿Seguro que quiere cerrar la Sesión Actual?</p>
         </div>
         <div class="modal-footer justify-content-between">
-          <button style="height:40px;width:120px" type="button" class="btn btn-danger" data-dismiss="modal">No. Continuar </button>
-          <button style="height:40px;width:120px" type="button" class="btn btn-primary" onclick="salir()">Sí. Salir</button>
+          <button type="button" class="btn btn1 btn-danger" data-dismiss="modal">No. Continuar </button>
+          <button type="button" class="btn btn1 btn-primary" onclick="salir()">Sí. Salir</button>
         </div>
       </div>
     </div>
@@ -87,7 +78,7 @@ $ida = $res['Ida'];
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header" id="modal-header">
-          <h4 style="font-weight:600" class="modal-title" id="modal-title">DATOS DEL PERFIL DEL USUARIO</h4>
+          <h4 class="modal-title modal-title-weight" id="modal-title">DATOS DEL PERFIL DEL USUARIO</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">x</span>
           </button>
@@ -163,8 +154,8 @@ $ida = $res['Ida'];
           </form>
         </div>
         <div class="modal-footer justify-content-between">
-          <button style="height: 40px;width: 120px;" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-          <button style="height: 40px;width: 180px;" type="button" class="btn btn-primary" id="Actualizar">Actualizar Datos</button>
+          <button type="button" class="btn btn1 btn-danger" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn1 btn-primary" id="Actualizar">Actualizar Datos</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -177,18 +168,18 @@ $ida = $res['Ida'];
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 style="font-weight:600" class="modal-title">ACTUALIZAR FOTO DE PERFIL:</h4>
+          <h4 class="modal-title modal-title-weight">ACTUALIZAR FOTO DE PERFIL:</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
         <form id="FormFotop">
-          <div style="text-align:center;" class="modal-body">
-            <h1 style="font-family:arial;font-size:20px;font-weight:600">Foto de perfil Actual</h1>
-            <img style="widht: 150px; height:150px;" src="/Sistema_MesaPartes/<?php echo $foto ?>" id="Fotope" name="Fotope">
+          <div class="modal-body modal-body-center">
+            <h1 class="modal-body-title">Foto de perfil Actual</h1>
+            <img class="modal-photo" src="../../<?php echo $foto ?>" id="Fotope" name="Fotope">
             <br><br>
             <div class="form-group">
-              <label>Elegir Foto (jpg)</label><span style="color: red;font-weight: 600;"> (*)</span>
+              <label>Elegir Foto (jpg)</label><span class="span-red"> (*)</span>
               <div class="file">
                 <input type="hidden" id="opcion" name="opcion" value='13'>
                 <input type="hidden" id="iddni2" name="iddni2" value="<?php echo $dni; ?>">
@@ -200,8 +191,8 @@ $ida = $res['Ida'];
 
           </div>
           <div class="modal-footer justify-content-between">
-            <button style="height:40px;width:120px" type="button" class="btn btn-danger" data-dismiss="modal">Cancelar </button>
-            <button style="height:40px;width:120px" type="submit" class="btn btn-primary" id="CambiarP">Cambiar</button>
+            <button type="button" class="btn btn1 btn-danger" data-dismiss="modal">Cancelar </button>
+            <button type="submit" class="btn btn1 btn-primary" id="CambiarP">Cambiar</button>
           </div>
         </form>
       </div>
@@ -213,8 +204,8 @@ $ida = $res['Ida'];
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 style="font-weight:600" class="modal-title">CAMBIO DE CONTRASEÑA:</h4>
-          &nbsp;<b id="idc" style="color:#8C0505;font-size: 1.4rem;"></b>
+          <h4 class="modal-title modal-title-weight">CAMBIO DE CONTRASEÑA:</h4>
+          <b id="idc" class="b-modal-info"></b>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -222,23 +213,23 @@ $ida = $res['Ida'];
         <div class="modal-body">
           <form id="formC">
             <div class="form-group">
-              <label>Contraseña Actual</label>
+              <label>Contraseña Actual<span class="span-red"> (*)</span></label>
               <input type="password" class="form-control1" name="ipsw" id="ipsw" />
             </div>
             <div class="form-group">
-              <label>Contraseña Nueva</label>
+              <label>Contraseña Nueva<span class="span-red"> (*)</span></label>
               <input type="password" class="form-control1" name="ipasss1" id="ipasss1" />
             </div>
             <div class="form-group">
-              <label>Confirmar nueva contraseña</label>
+              <label>Confirmar nueva contraseña<span class="span-red"> (*)</span></label>
               <input type="password" class="form-control1" name="ipassco1" id="ipassco1" />
               <b id="error3"></b>
             </div>
           </form>
         </div>
         <div class="modal-footer justify-content-between">
-          <button style="height:40px;width:120px" type="button" class="btn btn-danger" data-dismiss="modal" id="SalirC">Cancelar </button>
-          <button style="height:40px;width:120px" type="button" class="btn btn-primary" id="BtnContraG">Actualizar</button>
+          <button type="button" class="btn btn1 btn-danger" data-dismiss="modal" id="SalirC">Cancelar </button>
+          <button type="button" class="btn btn1 btn-primary" id="BtnContraG">Actualizar</button>
         </div>
       </div>
     </div>
@@ -249,8 +240,8 @@ $ida = $res['Ida'];
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 style="font-weight:600" class="modal-title">DATOS DE LA INSTITUCIÓN:</h4>
-          &nbsp;<b id="idc" style="color:#8C0505;font-size: 1.4rem;"></b>
+          <h4 class="modal-title modal-title-weight">DATOS DE LA INSTITUCIÓN:</h4>
+          <b id="idc" class="b-modal-info"></b>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
@@ -259,23 +250,23 @@ $ida = $res['Ida'];
           <form id="formInst">
             <div class="form-group">
               <input type="hidden" class="form-control" name="idinst" id="idinst">
-              <label>RUC (*)</label>
+              <label>RUC <span class="span-red"> (*)</span></label>
               <input type="text" class="form-control" name="iruci" id="iruci">
             </div>
             <div class="form-group">
-              <label>Razón (*)</label>
+              <label>Razón <span class="span-red"> (*)</span></label>
               <input type="text" class="form-control" name="irazoni" id="irazoni">
             </div>
             <div class="form-group">
-              <label>Dirección (*)</label>
+              <label>Dirección <span class="span-red"> (*)</span></label>
               <input type="text" class="form-control" name="idirei" id="idirei">
               <b id="error3"></b>
             </div>
           </form>
         </div>
         <div class="modal-footer justify-content-between">
-          <button style="height:40px;width:120px" type="button" class="btn btn-danger" data-dismiss="modal" id="SalirI">Cancelar </button>
-          <button style="height:40px;width:120px" type="button" class="btn btn-primary" id="BtnEditInsti">Editar datos</button>
+          <button type="button" class="btn btn1 btn-danger" data-dismiss="modal" id="SalirI">Cancelar </button>
+          <button type="button" class="btn btn1 btn-primary" id="BtnEditInsti">Editar datos</button>
         </div>
       </div>
     </div>
@@ -286,9 +277,9 @@ $ida = $res['Ida'];
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>&nbsp;&nbsp;&nbsp;
+        </li>
         <li class="nav-item">
-          <h3 style="margin:8px 0;font-size:20px;font-weight:600">ÁREA: <?php echo $area['area']; ?></h3>
+          <h3 class="nav-text-h3">ÁREA: <?php echo $area['area']; ?></h3>
           <input id="idarealogin" name="idarealogin" type="hidden" value="<?php echo $area['area']; ?>">
           <input id="idinstitu" name="idinstitu" type="hidden" value="<?php echo $area['idinstitucion']; ?>">
           <input id="idarea" name="idarea" type="hidden" value="<?php echo $area['IDa']; ?>">
@@ -300,9 +291,10 @@ $ida = $res['Ida'];
         </a> -->
       </ul>
       <ul class="navbar-nav ml-auto">
-        <!-- Navbar Search -->
+        
+        <!-- 
+          BOTON DE BUSCAR
         <li class="nav-item">
-
           <div class="navbar-search-block">
             <form class="form-inline">
               <div class="input-group input-group-sm">
@@ -321,19 +313,18 @@ $ida = $res['Ida'];
           </div>
         </li>
 
-
+        BOTON DE EXPANDIR
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
-        </li>
-
+        </li> -->
 
         <div class="demo-navbar-user nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
             <span class="d-inline-flex flex-lg-row-reverse align-items-center align-middle">
-              <img src="/Sistema_MesaPartes/<?php echo $foto ?>" alt class="d-block ui-w-30 rounded-circle">
-              <span style="font-size:20px" class="px-1 mr-lg-2 ml-2 ml-lg-0">
+              <img src="../../<?php echo $foto ?>" alt class="d-block ui-w-30 rounded-circle">
+              <span class="px-1 mr-lg-2 ml-2 ml-lg-0 font-name">
                 <?php
                 $utf8_string = $_SESSION['nombre'];
                 $iso8859_1_string = mb_convert_encoding($utf8_string, 'ISO-8859-1', 'UTF-8');
@@ -361,5 +352,3 @@ $ida = $res['Ida'];
       </ul>
     </nav>
     <!-- /.navbar -->
-
-
