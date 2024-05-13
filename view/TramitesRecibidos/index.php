@@ -476,7 +476,6 @@ $resultado1 = mysqli_fetch_assoc($consulta);
           <h1 class="title-content-h1">SISTEMA DE MESA DE PARTES VIRTUAL</h1>
         </div>
         <div class="col-sm-1">
-
           <ol class="breadcrumb float-sm-right">
             <li class="font-w-600 li-nav-info"><i class="nav-icon fas fa-file-download"></i>Trámites Recibidos</li>
           </ol>

@@ -121,7 +121,7 @@
   font-size: 19px;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;  
+  text-overflow: ellipsis;
 }
 .img-logo {
   opacity: 0.8;
@@ -203,7 +203,7 @@
 }
 
 .table-data {
-  width: 100%;
+  width: 100% !important;
 }
 .table-data thead,
 .table-data tfoot {
