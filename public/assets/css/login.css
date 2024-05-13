@@ -39,10 +39,10 @@ form .username1 {
 }
 
 .content-input input,
-.content-select select{
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
+.content-select select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 form .username {
   position: relative;
@@ -159,59 +159,59 @@ input[type="submit"]:hover {
   text-decoration: underline;
 }
 
-.username1 select{
-	appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
+.username1 select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 .username1 select::-ms-expand {
   display: none;
 }
- 
-.username1 select{
+
+.username1 select {
   top: 8px;
-	display: inline-block;
-	width: 100%;
-	cursor: pointer;
-  	padding: 7px 10px;
-  	height: 32px;
-  	outline: 0; 
-  	border: 0;
-	border-radius: 0;
-	background: #f0f0f0;
-	color: black;
-	font-size: 1em;
-	font-family:'Quicksand', sans-serif;
-	border:2px solid rgba(0,0,0,0.2);
-    border-radius: 12px;
-    position: relative;
-    transition: all 0.25s ease;
+  display: inline-block;
+  width: 100%;
+  cursor: pointer;
+  padding: 7px 10px;
+  height: 32px;
+  outline: 0;
+  border: 0;
+  border-radius: 0;
+  background: #f0f0f0;
+  color: black;
+  font-size: 1em;
+  font-family: "Quicksand", sans-serif;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.25s ease;
 }
- 
-.username1 select:hover{
-	background: #d6f9fa;
+
+.username1 select:hover {
+  background: #d6f9fa;
 }
- 
+
 /* 
 Creamos la fecha que aparece a la izquierda del select.
 Realmente este elemento es un cuadrado que sólo tienen
 dos bordes con color y que giramos con transform: rotate(-45deg);
 */
-.username1 i{
-	position: absolute;
-	right: 20px;
-	top: calc(50% - 10px);
-	width: 16px;
-	height: 16px;
-	display: block;
-	border-left:4px solid #2AC176;
-	border-bottom:4px solid #2aa3c1;
-	transform: rotate(-45deg); /* Giramos el cuadrado */
-	transition: all 0.25s ease;
+.username1 i {
+  position: absolute;
+  right: 20px;
+  top: calc(50% - 10px);
+  width: 16px;
+  height: 16px;
+  display: block;
+  border-left: 4px solid #2ac176;
+  border-bottom: 4px solid #2aa3c1;
+  transform: rotate(-45deg); /* Giramos el cuadrado */
+  transition: all 0.25s ease;
 }
- 
-.username1:hover i{
-	margin-top: 3px;
+
+.username1:hover i {
+  margin-top: 3px;
 }
 .alert {
   padding: 0.75rem 1.25rem;
@@ -339,20 +339,20 @@ dos bordes con color y que giramos con transform: rotate(-45deg);
   line-height: 1;
   color: #000;
   text-shadow: 0 1px 0 #fff;
-  opacity: .5;
+  opacity: 0.5;
 }
 
-.close:focus, .close:hover {
+.close:focus,
+.close:hover {
   color: #000;
   text-decoration: none;
-  opacity: .75;
+  opacity: 0.75;
 }
 
 button.close {
   padding: 0;
   background: transparent;
   border: 0;
-  -webkit-appearance: none;
 }
 .d-flex {
   display: -ms-flexbox !important;
@@ -360,9 +360,21 @@ button.close {
 }
 .align-items-center {
   -ms-flex-align: center !important;
-      align-items: center !important;
+  align-items: center !important;
 }
 .justify-content-start {
   -ms-flex-pack: start !important;
-      justify-content: flex-start !important;
+  justify-content: flex-start !important;
+}
+
+.h3-title {
+  text-align: center;
+  font-size: 20px;
+  font-style: italic;
+  color: brown;
+}
+
+.span-inf {
+  font-size: 10px;
+  text-align: center;
 }
