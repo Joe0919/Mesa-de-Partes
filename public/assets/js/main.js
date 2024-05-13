@@ -2536,6 +2536,10 @@ $(document).ready(function () {
         break;
     }
   });
+
+  $(".div-check").click(function () {
+    $("#check").prop("checked", true);
+  });
 });
 /*=============================   FUNCIONES  ================================= */
 
@@ -2660,3 +2664,8 @@ const check = () => {
   if (!input.validity.valid) input.value = 1;
   if (+input.value < 0) input.value = 1;
 };
+
+let archivo = document.querySelector("#idfile");
+archivo.addEventListener("change", () => {
+  document.querySelector("#alias").innerText = archivo.files[0].name;
+});

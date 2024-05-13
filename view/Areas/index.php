@@ -168,7 +168,7 @@ $institucion1 = mysqli_query($conexion, "select * from institucion");
         </div>
         <div class="col-sm-1">
           <ol class="breadcrumb float-sm-right">
-            <li class="font-w-600 li-nav-info"><i class="nav-icon fas fa-home"></i>&nbsp;Áreas</li>
+            <li class="font-w-600 li-nav-info"><i class="nav-icon fas fa-home"></i>Áreas</li>
           </ol>
         </div>
       </div>

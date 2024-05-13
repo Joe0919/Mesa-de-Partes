@@ -224,7 +224,7 @@ $areaE = mysqli_query($conexion, "select i.idareainstitu ID, area from area a, a
         </div>
         <div class="col-sm-1">
           <ol class="breadcrumb float-sm-right">
-            <li class="font-w-600 li-nav-info"><i class="nav-icon fas fa-user-friends"></i>&nbsp;Empleados</li>
+            <li class="font-w-600 li-nav-info"><i class="nav-icon fas fa-user-friends"></i>Empleados</li>
           </ol>
         </div>
       </div>

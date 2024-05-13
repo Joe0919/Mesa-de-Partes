@@ -21,10 +21,39 @@
 <script src="../../public/assets/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script src="../../public/assets/plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
 <script src="../../public/assets/plugins/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
+<script src="../../public/assets/plugins/datepicker/locales/bootstrap-datepicker.es.min.js"></script>
 <script>
   $('#sandbox-container .input-daterange').datepicker({
     format: "dd/mm/yyyy",
     endDate: "<?php echo date("d/m/Y"); ?>",
+    autoclose: true
+  });
+  // $(function () {
+  // $.datepicker.setDefaults($.datepicker.regional["es"]);
+  // $('#datepicker').datepicker(
+  //     { minDate: 0 }  
+  //   );
+
+  // $('#datepicker1').datepicker(
+  //     { maxDate: 0 }  
+  //   );
+  // });
+  // $.fn.datepicker.defaults.format = "mm/dd/yyyy";
+  
+  $('.datehg').datepicker({
+    format: "dd/mm/yyyy",
+    startDate: "<?php echo date("d/m/Y"); ?>",
+    autoclose: true
+  });
+  $('.datehg1').datepicker({
+    format: "dd/mm/yyyy",
+    endDate: "<?php echo date("d/m/Y"); ?>",
+    autoclose: true
+  });
+
+  $('.dateC').datepicker({
+    format: "dd/mm/yyyy",
+    startDate: "<?php echo date("d/m/Y"); ?>",
     autoclose: true
   });
 </script>

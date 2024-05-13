@@ -11,7 +11,7 @@ $foto = $_SESSION["foto"];
 $dni = $_SESSION["dni"];
 
 
-$consulta = mysqli_query($conexion, "select idinstitucion, ae.idarea IDa, area from empleado e, persona p, areainstitu a, area ae
+$consulta = mysqli_query($conexion, "select idinstitucion, ae.idarea ID, area from empleado e, persona p, areainstitu a, area ae
 where e.idpersona=p.idpersona and e.idareainstitu=a.idareainstitu and ae.idarea=a.idarea and dni='$dni';");
 $area = mysqli_fetch_assoc($consulta);
 
@@ -43,7 +43,7 @@ $ida = $res['Ida'];
   <!-- <link rel="stylesheet"  href="../../public/assets/plugins/jquery-ui/jquery-ui.min.css"> -->
   <link rel="stylesheet" href="../../public/assets/plugins/datepicker/css/bootstrap-datepicker3.min.css">
   <link rel="stylesheet" href="../../public/assets/css/style.css">
-
+  <link rel="stylesheet"  href="../../public/assets/plugins/datepicker/css/bootstrap-datepicker3.min.css">
 
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -280,9 +280,9 @@ $ida = $res['Ida'];
         </li>
         <li class="nav-item">
           <h3 class="nav-text-h3">ÁREA: <?php echo $area['area']; ?></h3>
+          <input id="idareaid" name="idarealogin" type="hidden" value="<?php echo $area['ID'];?>">
           <input id="idarealogin" name="idarealogin" type="hidden" value="<?php echo $area['area']; ?>">
           <input id="idinstitu" name="idinstitu" type="hidden" value="<?php echo $area['idinstitucion']; ?>">
-          <input id="idarea" name="idarea" type="hidden" value="<?php echo $area['IDa']; ?>">
           <input id="iduser" name="iduser" type="hidden" value="<?php echo $iduser; ?>">
           <input id="dniuser" name="dniuser" type="hidden" value="<?php echo $dni; ?>">
         </li>

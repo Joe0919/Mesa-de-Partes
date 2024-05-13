@@ -421,7 +421,7 @@ $query2 = mysqli_query($conexion, "SELECT * FROM roles");
         </div>
         <div class="col-sm-1">
           <ol class="breadcrumb float-sm-right">
-            <li class="font-w-600 li-nav-info"><i class="nav-icon fas fa-user"></i>&nbsp;Usuarios</li>
+            <li class="font-w-600 li-nav-info"><i class="nav-icon fas fa-user"></i>Usuarios</li>
           </ol>
         </div>
       </div>
@@ -492,4 +492,5 @@ $query2 = mysqli_query($conexion, "SELECT * FROM roles");
 </div>
 </div>
 <!-- FIN  DEL CONTENIDO PRINCIPAL -->
+
 <?php require_once("../parteinferior.php") ?>
