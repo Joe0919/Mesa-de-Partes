@@ -6,12 +6,38 @@
   --color4: #bdbcbc;
   --color5: #8c0505;
   --color6: #cb2020;
+  --color-table1: #896a09;
+  --color-table1-5: #f2e3a9;
+  --color-table2: #bdbdbd;
+  --color-table2-5: #d9d9d8;
 }
 
 .btn1 {
   height: 40px;
   width: 140px;
 }
+
+.btn2 {
+  width: 200px;
+  height: 40px;
+  font-size: 18px;
+  float: right;
+  gap: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn3 {
+  font-size: 18px;
+  height: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
 .btn-a {
   float: right;
   width: 220px;
@@ -76,6 +102,11 @@
   font-size: 1.4rem;
 }
 
+.d-flex-gap {
+  display: flex;
+  gap: 8px;
+}
+
 .btn-general {
   cursor: pointer;
 }
@@ -123,6 +154,17 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.select-search {
+  width: auto;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.img-no-search {
+  width: 140px;
+  height: 140px;
+}
+
 .img-logo {
   opacity: 0.8;
 }
@@ -205,6 +247,30 @@
 .table-data {
   width: 100% !important;
 }
+
+.table-doc thead tr th {
+  background: var(--color-table1);
+  text-align: center;
+  color: white;
+}
+.table-remi thead tr th {
+  background: var(--color-table2);
+  text-align: center;
+  color: white;
+}
+.table-doc tbody tr,
+.table-remi tbody tr {
+  text-align: center;
+  font-size: 19px;
+}
+
+.table-doc tbody tr th{
+  background: var(--color-table1-5);
+}
+.table-remi tbody tr th{
+  background: var(--color-table2-5);
+}
+
 .table-data thead,
 .table-data tfoot {
   background: var(--main-color);
@@ -219,6 +285,7 @@
 .table-data tfoot tr .th-photo {
   width: 10px;
 }
+
 #Enviar {
   height: 40px;
   font-size: 20px;
