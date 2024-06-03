@@ -4,8 +4,6 @@ require_once("../config/conexion2.php");
 $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -15,44 +13,37 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Mesa de Partes Virtual - HACDP</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <link rel="stylesheet" href="../public/assets/css/mspartes.css">
+  <!-- <link rel="stylesheet" href="../public/assets/css/mspartes.css"> -->
+  <link rel="stylesheet" href="../public/assets/css/style.css">
   <link rel="stylesheet" href="../public/assets/dist/css/adminlte.min1.css">
   <link rel="shorcut icon" href="../public/assets/img/logo.png">
   <link rel="stylesheet" href="../public/assets/plugins/fontawesome-free/css/all.min.css">
 </head>
 
 <body>
-
-  <header id="expediente">
-    <nav role="navigation" class="navbar navbar-gorehco navbar-static-top">
-      <div class="container1">
-        <div class="Navbar-wrapper">
-          <a href="#" class="img">
-            <a></a>
-            <img src="../public/assets/img/logo.png" alt="Logo" style="width: 50px;height: 50px;"></a>
-          <a class="navbar-brand">HOSPITAL ANTONIO CALDAS DOMíNGUEZ -
-            POMABAMBA</a>
-          <a href="../index.html" class="btn btn-sm btn-success">Ir a Página Principal</a>
-          <a></a>
-          <a></a>
-        </div>
+  <header id="expediente" class="container header">
+    <nav class="naveg">
+      <div>
+        <a href="#" class="img">
+          <img src="../public/assets/img/logo.png" alt="Logo" class="img-logo"></a>
+        <h1 class="titulo">HOSPITAL ANTONIO CALDAS DOMíNGUEZ -
+          POMABAMBA</h1>
+        <a href="../index.html" class="btn btn-sm btn-success">Ir a Página Principal</a>
       </div>
     </nav>
   </header>
-  <div data-v-269f0572="" class="container">
-    <div data-v-269f0572="" class="card card-principal">
-      <div data-v-269f0572="" class="card-header font-weight-bold">MESA DE PARTES VIRTUAL</div>
-      <div style="margin-top:10px;">
+  <div class="container">
+    <div class="card card-principal">
+      <div class="card-header font-weight-bold">MESA DE PARTES VIRTUAL</div>
+      <div>
         <div class="col-md-2" id="divL">
-          <button type="button" id="btnLimpiar" class="btn btn-danger"><i class="fa fa-eraser"></i>&nbsp;Limpiar
-            Campos</button>
+          <button type="button" id="btnLimpiar" class="btn btn-danger"><i class="fa fa-eraser"></i>Limpiar Campos</button>
         </div>
         <div class="col-md-2" id="divT">
-          <button type="button" id="btnNuevoT" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Nuevo
-            Trámite</button>
+          <button type="button" id="btnNuevoT" class="btn btn-success"><i class="fa fa-plus"></i>Nuevo Trámite</button>
         </div>
         <div class="col-md-2" id="divS">
-          <button type="button" id="btnSeguir" class="btn btn-primary"><i class="fa fa-search"></i>&nbsp;&nbsp;Seguimiento</button>
+          <button type="button" id="btnSeguir" class="btn btn-primary"><i class="fa fa-search"></i>Seguimiento</button>
         </div>
       </div>
       <div class="card-body">
@@ -64,13 +55,10 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
               </div>
 
               <div class="card-body">
-                <span id="Avisoa" style="font-size:14px;color:green"><b>NOTA: Ud. se ha registrado antes, pero puede
+                <span id="Avisoa" class="aviso-span"><b>NOTA: Ud. se ha registrado antes, pero puede
                     editar su número de Celular, Correo y Dirección de ser necesario.</b></span>
                 <form id="formulario-tramite" onsubmit="submitForm(event)" name="formulario-tramite" enctype="multipart/form-data" method="post">
-                  <label>Tipo de Persona: </label><span style="color: red;font-weight: 600;">
-                    (*)</span>
-
-
+                  <label>Tipo de Persona: </label><span class="span-red">(*)</span>
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="custom-control custom-radio">
@@ -87,14 +75,12 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
                   </div>
                   <div id="mostrar">
                     <div class="form-group">
-                      <label>RUC </label><span style="color: red;font-weight: 600;">
-                        (*)</span>
+                      <label>RUC </label><span class="span-red">(*)</span>
                       <input type="text" class="form-control" id="idruc" name="idruc" onkeypress="return validaNumericos(event)" maxlength="11" minlength="11">
                     </div>
 
                     <div class="form-group">
-                      <label>Entidad </label><span style="color: red;font-weight: 600;">
-                        (*)</span>
+                      <label>Entidad </label><span class="span-red">(*)</span>
                       <input type="text" class="form-control" id="identi" name="identi">
                     </div>
                   </div>
@@ -102,17 +88,16 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
                     <div class="col-sm-4">
                       <div class="form-group">
                         <input type="hidden" class="form-control" id="idpersona" name="idpersona">
-                        <label>DNI</label><span style="color: red;font-weight: 600;"> (*)</span>
+                        <label>DNI</label><span class="span-red">(*)</span>
                         <input type="text" class="form-control" onkeypress='return validaNumericos(event)' maxlength="8" minlength="8" name="iddni" id="iddni" required>
                       </div>
                     </div>
-                    <div style="padding:0" class="col-sm-2">
-                      <input style="margin:33px 0" id="validar" type="button" class="btn btn-success" value="Validar">
+                    <div class="col-sm-2">
+                      <input id="validar" type="button" class="btn btn-success" value="Validar">
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Nombres </label><span style="color: red;font-weight: 600;">
-                          (*)</span>
+                        <label>Nombres </label><span class="span-red">(*)</span>
                         <input type="text" class="form-control" id="idnombre" name="idnombre" required>
                       </div>
                     </div>
@@ -121,35 +106,31 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
                   <div class="row">
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Apellido Paterno </label><span style="color: red;font-weight: 600;">
-                          (*)</span>
+                        <label>Apellido Paterno </label><span class="span-red">(*)</span>
                         <input type="text" class="form-control" id="idap" name="idap" required>
                       </div>
                     </div>
                     <div class="col-sm-6">
                       <div class="form-group">
-                        <label>Apellido Materno </label><span style="color: red;font-weight: 600;">
-                          (*)</span>
+                        <label>Apellido Materno </label><span class="span-red">(*)</span>
                         <input type="text" class="form-control" id="idam" name="idam" required>
                       </div>
                     </div>
                   </div>
                   <div class="form-group">
-                    <label>N° Celular </label><span style="color: red;font-weight: 600;">
-                      (*)</span>
+                    <label>N° Celular </label><span class="span-red">(*)</span>
                     <input type="text" class="form-control" id="idcel" onkeypress='return validaNumericos(event)' minlength="9" maxlength="9" required name="idcel">
                   </div>
                   <div class="form-group">
-                    <label>Dirección </label><span style="color: red;font-weight: 600;">
-                      (*)</span>
+                    <label>Dirección </label><span class="span-red">(*)</span>
                     <input type="text" class="form-control" id="iddirec" required name="iddirec">
                   </div>
                   <div class="form-group">
-                    <label>Correo </label><span style="color: red;font-weight: 600;"> (*)</span>
+                    <label>Correo </label><span class="span-red">(*)</span>
                     <input type="text" class="form-control1" id="idcorre" required name="idcorre">
                     <i><b id="Vcorreo"></b></i>
                   </div>
-                  <span style="color: #ff0000;font-weight: 600;">Campos Obligatorios (*)</span>
+                  <span class="span-red">Campos Obligatorios (*)</span>
                   <br>
 
               </div>
@@ -165,8 +146,8 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
               <div class="card-body">
 
                 <div class="form-group">
-                  <label>Tipo</label><span style="color: red;font-weight: 600;"> (*)</span>
-                  <select style="width: 100%;height: 40px;font-weight:600;text-align:center;font-size:20px;" name="idtipo" id="idtipo">
+                  <label>Tipo</label><span class="span-red">(*)</span>
+                  <select class="select-new" name="idtipo" id="idtipo">
                     <?php
                     while ($datos = mysqli_fetch_array($query)) {
                     ?>
@@ -182,28 +163,25 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>N° Documento </label><span style="color: red;font-weight: 600;">
-                        (*)</span>
+                      <label>N° Documento </label><span class="span-red">(*)</span>
                       <input type="text" class="form-control" id="idnrodoc" onkeypress='return validaNumericos(event)' required name="idnrodoc">
                     </div>
                   </div>
                   <div class="col-sm-6">
                     <div class="form-group">
-                      <label>N° Folios </label><span style="color: red;font-weight: 600;">
-                        (*)</span>
+                      <label>N° Folios </label><span class="span-red">(*)</span>
                       <input type="number" class="form-control" id="idfolios" required name="idfolios">
                     </div>
                   </div>
 
                 </div>
                 <div class="form-group">
-                  <label>Asunto </label><span style="color: red;font-weight: 600;">(*)</span>
+                  <label>Asunto </label><span class="span-red">(*)</span>
                   <textarea class="form-control" rows="3" id="idasunto" placeholder="Ingrese el asunto del documento" required name="idasunto"></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>Adjuntar archivo (pdf.)</label><span style="color: red;font-weight: 600;">
-                    (*)</span>
+                  <label>Adjuntar archivo (pdf.)</label><span class="span-red">(*)</span>
                   <div class="file">
                     <p id="alias"></p>
                     <label for="idfile" id="archivo">Elige el Archivo...</label>
@@ -212,12 +190,12 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
 
                 </div>
                 <div class="custom-control custom-checkbox">
-                  <input class="form-check-input" style="width:20px;height:20px;" type="checkbox" id="check" name="check" value="option1" required>
+                  <input class="form-check-input" type="checkbox" id="check" name="check" value="option1" required>
 
                   <label for="customCheckbox4" class="form-check-label">Declaro que la
                     información proporcionada es válida y verídica.
                     Y Acepto que las comunicaciones sean enviadas a la dirección de corre y
-                    celular que proporcione.<span style="color: red;font-weight: 600;">(*)</span></label>
+                    celular que proporcione.<span class="span-red">(*)</span></label>
                   <div id="errorcheck"></div>
                 </div>
                 <br>
@@ -229,7 +207,7 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
             </div>
           </div>
         </div>
-        <div class="contenido" id="contenido" style="margin: 0 auto;width:100%;">
+        <div class="contenido" id="contenido">
           <section class="content">
             <div class="container-fluid">
               <div class="row">
@@ -237,39 +215,36 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
 
                   <div class="card card-primary" id="insert">
                     <div class="card-header">
-                      <h3 class="card-title" style="font-weight:600; color:white"><i class="fas fa-search"></i>&nbsp;&nbsp;BÚSQUEDA DE EXPEDIENTES</h3>
+                      <h3 class="card-title"><i class="fas fa-search"></i>BÚSQUEDA DE EXPEDIENTES</h3>
                     </div>
 
                     <!-- /.card-header -->
                     <div class="card-body">
-                      <h3 style="font-size: 18px;">*Para realizar la búsqueda de un documento presentado debe de ingresar el
-                        Número de Expediente del Documento y seleccionar el año de presentación:</h3>
+                      <h5>*Para realizar la búsqueda de un documento presentado debe de ingresar el
+                        Número de Expediente del Documento y seleccionar el año de presentación:</h5>
                       <br>
                       <div>
 
                         <form id="FormBuscar">
                           <div class="form-group row">
-                            &nbsp;&nbsp;&nbsp;
                             <label class="etiqueta">Nro Expediente:</label>
                             <div class="col-sm-2">
                               <input type="email" class="form-control" id="idexpb" onkeypress="return validaNumericos(event)" maxlength="6">
                             </div>
-                            &nbsp;&nbsp;&nbsp;
                             <label class="etiqueta">DNI:</label>
                             <div class="col-sm-2">
                               <input type="email" class="form-control" id="iddnii" onkeypress="return validaNumericos(event)" maxlength="8">
                             </div>
-                            &nbsp;&nbsp;&nbsp;
                             <label class="etiqueta">Año:</label>
                             <div class="col-sm-2">
-                              <select style="width:150px; font-weight:700; font-size:20px" class="form-control" id="idtipob">
+                              <select class="form-control select-search" id="idtipob">
                                 <option value="2022">2022</option>
                               </select>
 
                             </div>
 
                             <div class="col-sm-3">
-                              <button style="width:200px;height:40px;font-size:18px;float: right;" type="button" id="btnBusca" class="btn btn-danger btn-block"><i class="fa fa-search"></i>&nbsp;&nbsp;&nbsp;BUSCAR</button>
+                              <button type="button" id="btnBusca" class="btn btn2 btn-danger btn-block"><i class="fa fa-search"></i></button>
                             </div>
                           </div>
                         </form>
@@ -282,13 +257,13 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
                     <div class="callout callout-warning">
                       <div class="row">
                         <div class="col-sm-3" align="right">
-                          <img style="width: 140px; height: 140px;" src="../public/assets/img/error-404.png">
+                          <img class="img-no-search" src="../public/assets/img/error-404.png">
                         </div>
                         <div class="col-sm-9">
                           <br>
                           <h3><i class="fas fa-exclamation-triangle text-warning"></i> TRÁMITE NO ENCONTRADO.</h3>
 
-                          <p style="font-size:18px;">
+                          <p>
                             No se encontro el trámite con los datos ingresado, puede ser por que no existe un trámite
                             registrado con esos datos.<br>
                             <b>Por favor, intente realizar la búsqueda ingresando los datos correctos.<b>
@@ -300,8 +275,7 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
 
                   <div class="card card-olive" id="dat">
                     <div class="card-header">
-                      <h3 class="card-title"><i class="fas fa-file-pdf "></i>&nbsp;&nbsp;
-                        DATOS DEL TRÁMITE REALIZADO
+                      <h3 class="card-title"><i class="fas fa-file-pdf "></i>DATOS DEL TRÁMITE REALIZADO
                       </h3>
                     </div>
                     <div class="row">
@@ -313,10 +287,10 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
                         <div class="row">
                           <div class="col-md-6">
 
-                            <button type="button" style="height:40px" class="btn btn-primary btn-block" id="btnNew"><i class="fa fa-search"></i>&nbsp;&nbsp;Nueva Búsqueda</button>
+                            <button type="button" class="btn btn3 btn-primary btn-block" id="btnNew"><i class="fa fa-search"></i>Búsqueda</button>
                           </div>
                           <div class="col-md-5">
-                            <button type="button" style="height:40px" class="btn btn-danger btn-block" id="btnhistorial"><i class="fa fa-plus"></i>&nbsp;Mostrar Historial</button>
+                            <button type="button" class="btn btn3 btn-danger btn-block" id="btnhistorial"><i class="fa fa-plus"></i>Mostrar Historial</button>
                           </div>
                           <div class="col-md-1">
 
@@ -330,71 +304,74 @@ $query = mysqli_query($conexion, "SELECT * FROM tipodoc");
                         <div class="col-sm-6">
                           <div class="callout callout-success">
 
-                            <table width="100%" border="2" cellspacing="0" cellpadding="5" id="tableDoc">
-                              <tr>
-                                <th colspan="2" style="background:#BDBDBD;text-align:center;">
-                                  <h5 style="font-weight:600">DATOS DEL DOCUMENTO</h5>
-                                  </font>
-                                </th>
-                              </tr>
-                              <tr style="text-align:center;font-size:20px">
-                                <th style="background:#D9D9D8;width: 45%;">Expediente</th>
-                                <td>
-                                  <p id="celdaexpe"></p>
-                                </td>
-                              </tr>
-                              <tr style="text-align:center;font-size:20px">
-                                <th style="background:#D9D9D8;">N° Documento</th>
-                                <td>
-                                  <p id="celdanro"></p>
-                                </td>
-                              </tr>
-                              <tr style="text-align:center;font-size:20px">
-                                <th style="background:#D9D9D8;">Tipo</th>
-                                <td>
-                                  <p id="celdatipo"></p>
-                                </td>
-                              </tr>
-                              <tr style="text-align:center;font-size:18px">
-                                <th style="background:#D9D9D8">Asunto</th>
-                                <td>
-                                  <p id="celdasunto"></p>
-                                </td>
-                              </tr>
+                            <table border="2" class="table-doc table-data" cellspacing="0" cellpadding="5" id="tableDoc">
+                              <thead>
+                                <tr>
+                                  <th colspan="2">
+                                    <h5 class="font-w-600">DATOS DEL DOCUMENTO</h5>
+                                    </font>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr>
+                                  <th>Expediente</th>
+                                  <td>
+                                    <p id="celdaexpe"></p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>N° Documento</th>
+                                  <td>
+                                    <p id="celdanro"></p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>Tipo</th>
+                                  <td>
+                                    <p id="celdatipo"></p>
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <th>Asunto</th>
+                                  <td>
+                                    <p id="celdasunto"></p>
+                                  </td>
+                                </tr>
+                              </tbody>
                             </table>
 
                           </div>
                         </div>
                         <div class="col-sm-6">
                           <div class="callout callout-info">
-
-                            <table width="100%" border="2 black " cellspacing="0" cellpadding="5" id="tableRemitente">
+                            <table border="2" class="table-remi table-data" cellspacing="0" cellpadding="5" id="tableRemitente">
                               <tr>
-                                <th colspan="2" style="background:#BDBDBD ; text-align:center">
-                                  <h5 style="font-weight:600">DATOS DEL REMITENTE</h5>
-
+                                <th colspan="2">
+                                  <h5 class="font-w-600">DATOS DEL REMITENTE</h5>
+                                  </font>
                                 </th>
                               </tr>
-                              <tr style="text-align:center;font-size:18px">
-                                <th style="background:#D9D9D8;width: 45%;">DNI</th>
+                              <tr>
+                                <th>DNI</th>
                                 <td>
                                   <p id="celdadni"></p>
                                 </td>
                               </tr>
-                              <tr style="text-align:center;font-size:18px">
-                                <th style="background:#D9D9D8;">Apellidos y Nombres</th>
+                              <tr>
+                                <th>Apellidos y Nombres</th>
                                 <td>
                                   <p id="celdadatos"></p>
                                 </td>
                               </tr>
-                              <tr style="text-align:center;font-size:18px">
-                                <th style="background:#D9D9D8;">RUc</th>
+                              <tr>
+                                <th>RUC</th>
                                 <td>
                                   <p id="celdaruc"></p>
                                 </td>
                               </tr>
-                              <tr style="text-align:center;font-size:18px">
-                                <th style="background:#D9D9D8;">Entidad</th>
+                              <tr>
+                                <th>Entidad</th>
                                 <td>
                                   <p id="celdaenti"></p>
                                 </td>

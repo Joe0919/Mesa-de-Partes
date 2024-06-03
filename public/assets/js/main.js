@@ -1154,6 +1154,10 @@ $(document).ready(function () {
 
         $("#modalUsu").modal({ backdrop: "static", keyboard: false });
       },
+      error: function (xhr, status, error) {
+        // Manejar errores de la petición AJAX
+        console.error(error);
+      },
     });
   });
 
@@ -1234,7 +1238,7 @@ $(document).ready(function () {
     }
   });
 
-  $("#Fot").click(function () {
+  $("#conf-foto").click(function () {
     //Mostrar modal de foto de perfil
     $("#modalfotop").modal({ backdrop: "static", keyboard: false });
   });

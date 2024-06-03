@@ -33,9 +33,13 @@ $ida = $res['Ida'];
   <title>Mesa de Partes Virtual</title>
 
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+
   <link rel="stylesheet" href="../../public/assets/plugins/fontawesome-free/css/all.min.css">
+
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
   <link rel="stylesheet" href="../../public/assets/dist/css/adminlte.min.css">
+  
   <link rel="icon shortcut" href="../../public/assets/img/logo.png">
   <link rel="stylesheet" href="../../public/assets/fonts/ionicons.css">
   <link rel="stylesheet" href="../../public/assets/fonts/feather.css">
@@ -43,7 +47,7 @@ $ida = $res['Ida'];
   <!-- <link rel="stylesheet"  href="../../public/assets/plugins/jquery-ui/jquery-ui.min.css"> -->
   <link rel="stylesheet" href="../../public/assets/plugins/datepicker/css/bootstrap-datepicker3.min.css">
   <link rel="stylesheet" href="../../public/assets/css/style.css">
-  <link rel="stylesheet"  href="../../public/assets/plugins/datepicker/css/bootstrap-datepicker3.min.css">
+
 
 
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -280,7 +284,7 @@ $ida = $res['Ida'];
         </li>
         <li class="nav-item">
           <h3 class="nav-text-h3">ÁREA: <?php echo $area['area']; ?></h3>
-          <input id="idareaid" name="idarealogin" type="hidden" value="<?php echo $area['ID'];?>">
+          <input id="idareaid" name="idarealogin" type="hidden" value="<?php echo $area['ID']; ?>">
           <input id="idarealogin" name="idarealogin" type="hidden" value="<?php echo $area['area']; ?>">
           <input id="idinstitu" name="idinstitu" type="hidden" value="<?php echo $area['idinstitucion']; ?>">
           <input id="iduser" name="iduser" type="hidden" value="<?php echo $iduser; ?>">
@@ -291,34 +295,6 @@ $ida = $res['Ida'];
         </a> -->
       </ul>
       <ul class="navbar-nav ml-auto">
-        
-        <!-- 
-          BOTON DE BUSCAR
-        <li class="nav-item">
-          <div class="navbar-search-block">
-            <form class="form-inline">
-              <div class="input-group input-group-sm">
-
-                <input class="form-control form-control-navbar" type="search" placeholder="Buscar..." aria-label="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-navbar" type="submit">
-                    <i class="fas fa-search"></i>
-                  </button>
-                  <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                    <i class="fas fa-times"></i>
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </li>
-
-        BOTON DE EXPANDIR
-        <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </a>
-        </li> -->
 
         <div class="demo-navbar-user nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">

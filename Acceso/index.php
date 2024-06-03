@@ -34,31 +34,29 @@ if (isset($_POST["enviar"]) and $_POST["enviar"] == "si") {
             switch ($_GET["m"]) {
                 case "1";
         ?>
-                    <div class="alert alert-danger" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="d-flex align-items-center justify-content-start">
-                            <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
-                            <span class="span-info">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                !! El Usuario y/o la contraseña son incorrectos.. !! </span>
-                        </div>
-                    </div>
-                <?php
-                    break;
-
-                case "2";
-                ?>
-                    <div class="alert alert-danger" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="d-flex align-items-center justify-content-start">
-                            <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
-                            <span class="span-info">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                                !! Ingrese sus credenciales.. !! </span>
-                        </div>
-                    </div>
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="d-flex align-items-center justify-content-start">
+                <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                <span class="span-info">&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    !! El Usuario y/o la contraseña son incorrectos.. !! </span>
+            </div>
+        </div>
+        <?php break; 
+            case "2";
+        ?>
+        <div class="alert alert-danger" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="d-flex align-items-center justify-content-start">
+                <i class="icon ion-ios-checkmark alert-icon tx-32 mg-t-5 mg-xs-t-0"></i>
+                <span class="span-info">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+                    !! Ingrese sus credenciales.. !! </span>
+            </div>
+        </div>
         <?php
                     break;
             }
